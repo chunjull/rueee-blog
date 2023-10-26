@@ -1,0 +1,30 @@
+<% if (site.posts && site.posts.length > 0) { %>
+    <% if (page.layout == 'tag') { %>
+        <main class="main tagscloud">
+            <%- tagcloud({
+                min_font: 20, 
+                max_font: 35, 
+                amount: 999, 
+                color: true, 
+                start_color: '#cf0a10', 
+                end_color: '#cf0a10',
+            }) %>
+        </main>
+        <style>
+            .tagscloud a {
+                padding: 8px 16px;
+                border-radius: 16px;
+                margin-right: 1em;
+                white-space: nowrap;
+            }
+            .tagscloud a:hover {
+                background-color: #efd2bc;
+                text-decoration: none;
+            }
+        </style>
+    <% } else { %>
+        <main class="main">
+            <%- partial('_partial/post/post-list') %>
+        </main>
+    <% } %>
+<% } %>
