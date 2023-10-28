@@ -48,7 +48,7 @@
     text-align center
 
 .post-meta__date
-    color #808080
+    color #666666
 
 .post-entry__meta
 .post-title__meta
@@ -67,7 +67,7 @@
     margin calc(var(--space) * -1) !important
     margin-bottom calc(var(--space) / 2) !important
     overflow hidden
-    border-radius $radius_main
+    border-radius 4px 4px 0 0
 
     &:empty
         display none
@@ -101,6 +101,13 @@
         img
             display inline
             margin auto
+    a
+        color #bc2c3d !important
+        
+        &:hover
+            background-color #efd2bc
+            text-decoration none
+
 
 
 .post__comments
@@ -127,8 +134,8 @@
     margin .35em
     font-size .75em
     text-decoration none
-    background-color var(--bg-cat-color)
-    color currentColor !important
+    background-color #efd2bc !important
+    color #bc2c3d !important
     padding 0.25rem 0.6rem 0.25rem 0.6rem
     border-radius $radius_button
 

@@ -69,7 +69,7 @@ navbar:
 cover: 
 
   # 显示在最上方 cover 处的站点名称
-  sitename: Rueee
+  sitename: 
 
   # 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename
   avatar: 
@@ -166,7 +166,7 @@ meta:
 
   # 文章自动摘要
   auto_excerpt: 
-    enable: true
+    enable: false
     length: 150
 
   # 文章目录
