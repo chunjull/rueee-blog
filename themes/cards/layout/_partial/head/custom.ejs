@@ -2,5 +2,14 @@
 <% if (theme.head.custom_head && theme.head.custom_head.forEach) { %>
     <% theme.head.custom_head.forEach((item) => { %>
         <%- item %> 
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-JJ0SZSZ8JJ');
+        </script>
     <% }); %>
 <% } %>
