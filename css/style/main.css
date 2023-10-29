@@ -735,7 +735,7 @@ overflows table td {
   text-align: center;
 }
 .post-meta__date {
-  color: #808080;
+  color: #666;
 }
 .post-entry__meta,
 .post-title__meta {
@@ -755,7 +755,7 @@ overflows table td {
   margin: calc(var(--space) * -1) !important;
   margin-bottom: calc(var(--space) / 2) !important;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 4px 4px 0 0;
 }
 .post-entry__header:empty,
 .post__header:empty {
@@ -792,6 +792,13 @@ overflows table td {
   display: inline;
   margin: auto;
 }
+.post__content a {
+  color: #bc2c3d !important;
+}
+.post__content a:hover {
+  background-color: #efd2bc;
+  text-decoration: none;
+}
 .post__comments {
   max-width: var(--content-width);
   margin: var(--space) auto;
@@ -816,8 +823,8 @@ overflows table td {
   margin: 0.35em;
   font-size: 0.75em;
   text-decoration: none;
-  background-color: var(--bg-cat-color);
-  color: currentColor !important;
+  background-color: #efd2bc !important;
+  color: #bc2c3d !important;
   padding: 0.25rem 0.6rem 0.25rem 0.6rem;
   border-radius: 5px;
 }

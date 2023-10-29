@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#3 變數 | JubyDoWhat</title>
+<title>#2 JS 發展簡史 | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="變數是儲存資料的容器，可以幫助我們紀錄、使用資訊。">
+    <meta name="description" content="JavaScript 如何從「網路特效工具箱」發展成網頁設計中不可或缺的一部份？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#3 變數">
-<meta property="og:url" content="https://chunjull.github.io/2023/10/27/JavaScript-Variable/index.html">
+<meta property="og:title" content="#2 JS 發展簡史">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231026/1784042972/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="變數是儲存資料的容器，可以幫助我們紀錄、使用資訊。">
+<meta property="og:description" content="JavaScript 如何從「網路特效工具箱」發展成網頁設計中不可或缺的一部份？">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-10-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-27T07:13:09.199Z">
+<meta property="article:published_time" content="2023-10-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-29T12:32:42.056Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -150,10 +150,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #3 變數
+        #2 JS 發展簡史
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2023/10/" class="post-meta__date button">2023-10-27</a>
+        <a href="/archives/2023/10/" class="post-meta__date button">2023-10-26</a>
         
     
     
@@ -164,7 +164,7 @@
  
         ・ <span class="post-count">1 min read</span>
         
-    <span class="separate-dot"></span><a href="/categories/JS-%E4%B8%80%E5%88%86%E9%90%98/" class="button">JS 一分鐘</a>
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">JS一分鐘</a>
 
  
     </div>
@@ -175,31 +175,23 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>變數是儲存資料的容器，可以幫助我們紀錄、使用資訊。</p>
+        <p>JavaScript 如何從「網路特效工具箱」發展成網頁設計中不可或缺的一部份？</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><h3 id="變數是什麼？"><a href="#變數是什麼？" class="headerlink" title="變數是什麼？"></a>變數是什麼？</h3><p>變數（Variables）是用來儲存資料和進行運算的基本單位，可以將變數想像為一個盒子，用來存放資料。<br>變數儲存的資料被稱為「值」（value）。</p>
-<h3 id="變數的命名規則"><a href="#變數的命名規則" class="headerlink" title="變數的命名規則"></a>變數的命名規則</h3><ul>
-<li>變數的第一個字母必須是英文字母、底線（_）或錢字號（$），後面可以是英文字母、底線（_）或錢字號（$）及數字。</li>
-<li>變數名稱不可以是保留字和關鍵字。</li>
-<li>區分大小寫，「app」和「App」會被視為不同變數。</li>
-</ul>
-<h3 id="變數的宣告方式"><a href="#變數的宣告方式" class="headerlink" title="變數的宣告方式"></a>變數的宣告方式</h3><p>變數有三種宣告方式：<code>var</code>、<code>let</code>、<code>const</code>。差異為變數作用範圍、能否重複宣告等。<br>變數必須經過宣告才能使用，如果在沒有宣告變數的情況下使用，會出現錯誤。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 透過 var 宣告變數 n，n 值的內容為數字 1。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> m = <span class="string">&quot;apple&quot;</span>;</span><br><span class="line"><span class="comment">// 透過 let 宣告變數 m，m 值的內容為英文 apple。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> l = <span class="string">&quot;卯咪&quot;</span>;</span><br><span class="line"><span class="comment">// 透過 const 宣告變數 l，l 值的內容為中文 卯咪。</span></span><br></pre></td></tr></table></figure>
+<h2 id="背景故事"><a href="#背景故事" class="headerlink" title="背景故事"></a>背景故事</h2><p>JS 最初的設計目標是：在文件閱讀上增加互動，讓網站動起來。<br>1995～2010 年這段期間，處於瀏覽器的戰國時代，各種瀏覽器百花齊放，且各家標準不一，造成網頁維護困難。<br>ECMA 組織於 1997 年發表 JS 的標準化版本——ECMAScript，使 JS 開始獲得廣泛支持，成為瀏覽器唯一指定的內建程式語言。<br>2015 年，ECMAScript 第六版本（簡稱 ES2015、ES6）發布前，有很多 JS 的延伸語言存在，例如：CoffeeScript、TypeScript、Dart 等，這些都是使用者因應需求，自行開發的程式語言。<br>ES6 整合了上述延伸語言的優點並新增許多重要規範，使 JS 更強大，以便開發複雜的應用程式。<br>從此，ES6 成為主流使用的 JS 標準。</p>
 <h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
-<li>JS 支援 Unicode，變數名稱可以用中文命名。但基於開發習慣，仍應該避免使用英文字母、底線（_）或錢字號（$）以外的字原來命名變數。</li>
-<li>事實上，變數還有第四種宣告方式：無宣告。但沒有經過宣告的變數都會變成全域變數，可能會造成維護困難，因此非常不建議這麼做！</li>
+<li>Java 和 JavaScript 之間類似於「臘腸」和「臘腸狗」的關係——沒有關係。</li>
+<li>TypeScript 是有型態規範的 JS，由微軟開發，有較嚴謹的寫法。直到今日，仍有許多開發者使用。</li>
+<li>2015 年之後，ECMAScript 在每年六月會推出最新的版本，例如：ES2016、ES2017⋯⋯，這些新版本被統稱為「ES6+」。</li>
 </ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/First_steps/Variables#%E4%BB%80%E9%BA%BC%E6%98%AF%E8%AE%8A%E9%87%8F%EF%BC%8F%E8%AE%8A%E6%95%B8_variable_%EF%BC%9F">MDN－存儲您需要的資訊 - 變數</a>：詳細說明 JS 變數的使用規則。</li>
-<li><a target="_blank" rel="noopener" href="https://www.notion.so/3-b2698f71bf974ce7a39db73a9f7eb218?pvs=21">W3School－JavaScript Reserved Words</a>：JS 的保留字列表。</li>
-<li><a target="_blank" rel="noopener" href="https://jianline.com/javascript-statements/">阿建－JavaScript 變數宣告有哪些?必須弄懂的4個重點</a>：了解 JS 的四種變數宣告。</li>
-<li><a target="_blank" rel="noopener" href="https://roykwokcode.medium.com/unicode-%E8%88%87-utf-8-%E7%9A%84%E9%97%9C%E4%BF%82-1c9b7a0b7c29">Roy Kwok－Unicode 與 UTF-8 的關係？</a>：說明 Unicode 如何編譯中文字元。</li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10190685">Kuro Hsu－重新認識 JavaScript: Day 02 JavaScript 簡介</a>：圖文並茂講古時間。</li>
+<li><a target="_blank" rel="noopener" href="https://vimeo.com/368713918">ALPHACamp－JavaScript 前世今生</a>：了解前端發展歷史。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2023-10-27</p></div>
+<div class="post-footer__meta"><p>更新於 2023-10-29</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
@@ -208,7 +200,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/2023/10/28/JavaScript-Data-Type/" class="nav__link">
+                <a href="/javascript/20231027/1250803838/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -217,7 +209,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #4 資料型別簡介
+                            #3 變數
                         </div>
                     </div>
                 </a>
@@ -225,13 +217,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/2023/10/26/History-of-Javascript/" class="nav__link">
+                <a href="/javascript/20231025/1925797630/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #2 JS 發展簡史
+                            #1 JS 是什麼？
                         </div>
                     </div>
                     <div>
