@@ -1,9 +1,10 @@
 ---
-title: "#2 JS 發展簡史"
-date: 2023-10-26
-category: JS 一分鐘
+title: '#2 JS 發展簡史'
+category: JS一分鐘
 tags:
- - JavaScript
+  - JavaScript
+abbrlink: 1784042972
+date: 2023-10-26 00:00:00
 ---
 JavaScript 如何從「網路特效工具箱」發展成網頁設計中不可或缺的一部份？
 <!-- more -->

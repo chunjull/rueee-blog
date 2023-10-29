@@ -1,9 +1,10 @@
 ---
-title: "#1 JS 是什麼？"
-date: 2023-10-25
-category: JS 一分鐘
+title: '#1 JS 是什麼？'
+category: JS一分鐘
 tags:
- - JavaScript
+  - JavaScript
+abbrlink: 1925797630
+date: 2023-10-25 00:00:00
 ---
 JavaScript 不是魔法，而是一種實現多樣化功能的程式語言。
 <!-- more -->

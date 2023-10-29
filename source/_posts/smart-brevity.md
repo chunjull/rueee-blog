@@ -1,10 +1,12 @@
 ---
 title: ⚡️ 最聰明的高效能溝通法
-thumbnail: https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&q=80&w=2946&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+thumbnail: >-
+  https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&q=80&w=2946&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 date: 2023/10/24
 category: 閱讀一分鐘
 tags:
- - 閱讀心得
+  - 閱讀心得
+abbrlink: 861377249
 ---
 我們平均花 26 秒閱讀一篇內容，卻仍用 80 年代的舊方式溝通。
 <!-- more -->

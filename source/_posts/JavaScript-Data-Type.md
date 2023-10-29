@@ -1,9 +1,10 @@
 ---
-title: "#4 資料型別簡介"
-date: 2023-10-28
-category: JS 一分鐘
+title: '#4 資料型別簡介'
+category: JS一分鐘
 tags:
- - JavaScript
+  - JavaScript
+abbrlink: 764880996
+date: 2023-10-28 00:00:00
 ---
 變數沒有型別，值才有。
 <!--more-->

@@ -1,9 +1,10 @@
 ---
-title: "#3 變數"
-date: 2023-10-27
-category: JS 一分鐘
-tags: 
- - JavaScript
+title: '#3 變數'
+category: JS一分鐘
+tags:
+  - JavaScript
+abbrlink: 1250803838
+date: 2023-10-27 00:00:00
 ---
 變數是儲存資料的容器，可以幫助我們紀錄、使用資訊。
 <!--more-->
