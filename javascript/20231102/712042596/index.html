@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#9 物件型別：陣列 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="陣列是有順序性的集合，透過內建函式可以新增、刪除陣列中的元素。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#9 物件型別：陣列">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231102/712042596/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="陣列是有順序性的集合，透過內建函式可以新增、刪除陣列中的元素。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-11-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-02T08:50:11.203Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+                    <a href="/about/" class="navbar-menu button">關於</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+                    <a href="/about/" class="dropdown-menu button">關於</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #9 物件型別：陣列
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/11/" class="post-meta__date button">2023-11-02</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">3 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">JS一分鐘</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>陣列是有順序性的集合，透過內建函式可以新增、刪除陣列中的元素。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>陣列可被視為一種特別的「物件」，同樣是零至多個元素的集合，其值可以是原始的資料型別、另一個陣列、物件甚至函式。<br>與物件不同，陣列是<strong>有順序性的集合。</strong></p>
+<h3 id="建立陣列"><a href="#建立陣列" class="headerlink" title="建立陣列"></a>建立陣列</h3><p>陣列有兩種宣告方式：建構式與陣列實字。</p>
+<ul>
+<li>建構式：用 new 關鍵字加上 <code>Array()</code> 來宣告一個物件。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myArray = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br></pre></td></tr></table></figure></li>
+<li>陣列實字：用 <code>[]</code> 就可以宣告一個物件。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myArray = [];</span><br><span class="line"><span class="keyword">var</span> fruitList = [<span class="string">&quot;apple&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="string">&quot;orange&quot;</span>];</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="陣列索引"><a href="#陣列索引" class="headerlink" title="陣列索引"></a>陣列索引</h3><p>陣列索引是<strong>由 0 開始計算</strong>，以下方案例來說，陣列索引依序是 0、1、2、3。<br>陣列長度則可以透過 <code>array.length</code> 得知。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = [<span class="string">&quot;shoes&quot;</span>, <span class="string">&quot;shirts&quot;</span>, <span class="string">&quot;socks&quot;</span>, <span class="string">&quot;sweaters&quot;</span>];</span><br><span class="line">items.<span class="property">length</span>; <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+<h3 id="陣列元素取值"><a href="#陣列元素取值" class="headerlink" title="陣列元素取值"></a>陣列元素取值</h3><p>陣列元素的取值方式為 <code>array[number]</code> ，number 指元素的索引值。舉例來說：陣列的第一個元素，要透過 <code>array[0]</code> 取得。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="string">&#x27;a&#x27;</span> ,<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array[<span class="number">0</span>]); <span class="comment">// &#x27;a&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array[<span class="number">3</span>]); <span class="comment">// &#x27;d&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="新增元素"><a href="#新增元素" class="headerlink" title="新增元素"></a>新增元素</h3><p>陣列有兩種新增元素的方式： <code>push()</code> 、 <code>unshift()</code> 。</p>
+<ul>
+<li><code>push()</code> ：加入項目至陣列末端。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="string">&quot;apple&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="string">&quot;cat&quot;</span>, <span class="string">&quot;dag&quot;</span>];</span><br><span class="line">array.<span class="title function_">push</span>(<span class="string">&quot;elf&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [&quot;apple&quot;, &quot;banana&quot;, &quot;cat&quot;, &quot;dag&quot;, &quot;elf&quot;]</span></span><br></pre></td></tr></table></figure></li>
+<li><code>unshift()</code> ：加入項目至陣列前端。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="string">&quot;apple&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="string">&quot;cat&quot;</span>, <span class="string">&quot;dag&quot;</span>];</span><br><span class="line">array.<span class="title function_">unshift</span>(<span class="string">&quot;zero&quot;</span>); </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [&quot;zero&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;cat&quot;, &quot;dag&quot;]</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="刪除元素"><a href="#刪除元素" class="headerlink" title="刪除元素"></a>刪除元素</h3><p>陣列有三種刪除元素的方式： <code>pop()</code> 、 <code>shift()</code> 、 <code>splice()</code> 。</p>
+<ul>
+<li><code>pop()</code> ：移除陣列末端的項目。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="string">&quot;apple&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="string">&quot;cat&quot;</span>, <span class="string">&quot;dag&quot;</span>];</span><br><span class="line">array.<span class="title function_">pop</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [&quot;apple&quot;, &quot;banana&quot;, &quot;cat&quot;]</span></span><br></pre></td></tr></table></figure></li>
+<li><code>shift()</code> ：移除陣列前端的項目。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="string">&quot;apple&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="string">&quot;cat&quot;</span>, <span class="string">&quot;dag&quot;</span>];</span><br><span class="line">array.<span class="title function_">shift</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [banana&quot;, &quot;cat&quot;, &quot;dag&quot;]</span></span><br></pre></td></tr></table></figure></li>
+<li><code>splice()</code> ：移除指定索引位置的項目，並可指定欲移除其後的多少個項目。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="string">&quot;apple&quot;</span>, <span class="string">&quot;banana&quot;</span>, <span class="string">&quot;cat&quot;</span>, <span class="string">&quot;dag&quot;</span>];</span><br><span class="line">array.<span class="title function_">splice</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array); <span class="comment">// [&quot;apple&quot;, &quot;dag&quot;]</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="陣列判斷"><a href="#陣列判斷" class="headerlink" title="陣列判斷"></a>陣列判斷</h3><p>使用 <code>typeof</code> 檢查一個陣列，會得到 <code>“object”</code> 的結果。<br>當我們要檢查一個變數是陣列而非物件時，可以透過 <code>isArray()</code> 的方法判斷：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="title function_">isArray</span>([]); <span class="comment">// true</span></span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">isArray</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]); <span class="comment">// true</span></span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">isArray</span>(); <span class="comment">// false</span></span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">isArray</span>(&#123;<span class="attr">name</span>: <span class="string">&#x27;ABC&#x27;</span>, <span class="attr">number</span>: <span class="number">100</span>&#125;); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li><code>array.length</code> 的值可被覆寫，因此，陣列長度可以透過改變 <code>length</code> 屬性而更動。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN－Array</a>：了解陣列的更多應用。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/length">MDN－Array.length</a>：熟悉 <code>array.length</code> 的操作邏輯。</li>
+<li><a target="_blank" rel="noopener" href="https://www.casper.tw/development/2020/10/04/js-array-methods/">卡斯柏－JS 常見陣列方法</a>：理解 JS 常見的陣列方法。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2023-11-02</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20231101/3927311135/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #8 物件型別：物件
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2023 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
