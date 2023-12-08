@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#4 資料型別簡介 | JubyDoWhat</title>
+<title>#14 比較運算子 | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="變數沒有型別，值才有。">
+    <meta name="description" content="相等會自動轉型，全等不會自動轉型。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#4 資料型別簡介">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20231028/764880996/index.html">
+<meta property="og:title" content="#14 比較運算子">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231107/1239253188/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="變數沒有型別，值才有。">
+<meta property="og:description" content="相等會自動轉型，全等不會自動轉型。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-10-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-08T08:54:19.042Z">
+<meta property="article:published_time" content="2023-11-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-08T09:30:32.244Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -150,10 +150,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #4 資料型別簡介
+        #14 比較運算子
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2023/10/" class="post-meta__date button">2023-10-28</a>
+        <a href="/archives/2023/11/" class="post-meta__date button">2023-11-07</a>
         
     
     
@@ -162,7 +162,7 @@
  
 
  
-        ・ <span class="post-count">1 min read</span>
+        ・ <span class="post-count">2 min read</span>
         
     <span class="separate-dot"></span><a href="/categories/javascript/" class="button">JS一分鐘</a>
 
@@ -175,63 +175,56 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>變數沒有型別，值才有。</p>
+        <p>相等會自動轉型，全等不會自動轉型。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>變數本身不帶有資料型別的資訊，其中的「值」或「物件」才有。換句話說，變數只是用來作為取得值或物件的參考。<br>JS 的資料型別分為兩大類：基本型別（Primitives）與物件型別（Object）。<br>總共有七種資料型別：六種基本型別及一種物件型別。</p>
-<ol>
-<li>字串（String）。</li>
-<li>數字（Number）。</li>
-<li>布林值（Boolean）。</li>
-<li><code>null</code>。</li>
-<li><code>undefined</code>。</li>
-<li><code>symbol</code>。</li>
-<li>物件型別（Object）。</li>
-</ol>
-<h3 id="型別判斷"><a href="#型別判斷" class="headerlink" title="型別判斷"></a>型別判斷</h3><p>可以透過 <code>typeof</code> 運算子判斷型別。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="string">&quot;abc&quot;</span>; <span class="comment">// string</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">1200</span>; <span class="comment">// number</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>; <span class="comment">// boolean</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>; <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">typeof</span> &#123; &#125;; <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> [ ]; <span class="comment">// object</span></span><br></pre></td></tr></table></figure>
-<h3 id="型別整理"><a href="#型別整理" class="headerlink" title="型別整理"></a>型別整理</h3><table>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>比較運算子的用塗是比較運算子兩側數值，不論數值為純值、物件、運算式或函數回傳結果，比較結果都是 <code>true</code> 或 <code>false</code>。<br>針對不同型別的數值，會先自動轉型到同樣型別後，再做比較。</p>
+<h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><p>只有一個等號，是「指定、賦值」的意思。<br>當要比較數值時，有兩種表現方式：兩個等號的「相等」或三個等號的「全等」。<br>這是 JS 最容易搞混的觀念之一！</p>
+<h3 id="相等"><a href="#相等" class="headerlink" title="相等"></a>相等</h3><p>相等，以兩個等號 <code>==</code> 表示，在比較判斷時<strong>會自動轉型</strong>，是「寬鬆的等於」。<br>當兩個不同的「資料型別」比較時，會觸發自動轉型，導致常常會出現莫名其妙的比較結果，因此，不建議使用相等來比較。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">&quot;10&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b); <span class="comment">// true</span></span><br><span class="line"><span class="comment">/* 莫名其妙的案例 */</span></span><br><span class="line">[] == <span class="string">&quot;&quot;</span> <span class="comment">// true</span></span><br><span class="line">[] == <span class="number">0</span> <span class="comment">// true</span></span><br><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="全等"><a href="#全等" class="headerlink" title="全等"></a>全等</h3><p>全等，以三個等號 <code>===</code> 表示，在比較判斷時<strong>不會自動轉型</strong>，是「嚴格的等於」。<br>當兩個不同的「資料型別」比較時，不會自動轉型，因此，只會在雙方的「數值」與「型別」都相同時才回傳 <code>true</code>。<br>在任何時刻都建議使用全等來比較。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">&quot;10&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b); <span class="comment">// false</span></span><br><span class="line"><span class="comment">/* 不同型別的案例 */</span></span><br><span class="line"><span class="literal">null</span> === <span class="literal">undefined</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h3 id="不等於"><a href="#不等於" class="headerlink" title="不等於"></a>不等於</h3><p>不等於有兩種版本：寬鬆的不等於 <code>!=</code> 和嚴格的不等於 <code>!==</code> 。觀念和上述內容相同，前者會做自動轉型，後者不會做自動轉型。</p>
+<h3 id="重點回顧"><a href="#重點回顧" class="headerlink" title="重點回顧"></a>重點回顧</h3><p>相等 <code>==</code> 和全等 <code>===</code> 都是比較的意思，它們的差異不是「全等會檢查型別而相等不會」，是：<strong>全等不會替數值做自動轉型</strong>，相等會做自動轉型。</p>
+<h3 id="運算子整理"><a href="#運算子整理" class="headerlink" title="運算子整理"></a>運算子整理</h3><table>
 <thead>
 <tr>
-<th>資料型別</th>
+<th>運算子</th>
 <th>說明</th>
+<th>範例</th>
+<th>結果</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>String</td>
-<td>字串。</td>
+<td>&#x3D;&#x3D;</td>
+<td>相等，寬鬆的等於</td>
+<td><code>1 == “1”</code></td>
+<td><code>true</code></td>
 </tr>
 <tr>
-<td>Number</td>
-<td>數字，可以是整數或小數。</td>
+<td>&#x3D;&#x3D;&#x3D;</td>
+<td>全等，嚴格的等於</td>
+<td><code>1 === “1”</code></td>
+<td><code>true</code></td>
 </tr>
 <tr>
-<td>Boolean</td>
-<td>布林值，只有 true、false 兩種。</td>
+<td>!&#x3D;</td>
+<td>寬鬆的不等於</td>
+<td><code>10 != &quot;10&quot;</code></td>
+<td><code>false</code></td>
 </tr>
 <tr>
-<td>null</td>
-<td>空值，表示參考值不存在。</td>
-</tr>
-<tr>
-<td>undefined</td>
-<td>未定義，宣告變數卻未指派內容給它。</td>
-</tr>
-<tr>
-<td>symbol</td>
-<td>符號，表示獨一無二的值。</td>
-</tr>
-<tr>
-<td>object</td>
-<td>物件、陣列、函式都屬於物件型別。</td>
+<td>!&#x3D;&#x3D;</td>
+<td>嚴格的不等於</td>
+<td><code>10 !== &quot;10&quot;</code></td>
+<td><code>true</code></td>
 </tr>
 </tbody></table>
 <h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
-<li>JS 是一種「弱型別語言」，宣告變數時，可以不指定該值的資料型別。編譯時，JS 會將該變數轉換成「可以被執行」的資料型別，並強制執行。</li>
-<li>基本型別之外的值，都是「物件型別」。</li>
+<li>除了相等和全等之外，比較運算子還包括：大於 <code>&gt;</code> 、大於等於 <code>&gt;=</code> 、小於 <code>&lt;</code> 、小於等於 <code>&lt;=</code> 。</li>
+<li><code>=&gt;</code> 不是運算子，而是 ES6 的箭頭函式。</li>
 </ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Grammar_and_types#%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B%E5%8F%8A%E5%9E%8B%E5%88%A5">MDN－資料結構與型別</a>：了解 JS 各資料型別的基本內容。</li>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@yining1204/%E9%97%9C%E6%96%BCjavascript%E7%9A%84%E5%BC%B1%E5%9E%8B%E5%88%A5%E7%89%B9%E6%80%A7-93ffcdcf623e">Yi-Ning－關於 JavaScript 的弱型別特性</a>：了解弱型別語言的定義。</li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191254">Kuro－「比較」與自動轉型的規則</a>：本文最主要的參考範例。</li>
 </ul>
 
     </div>
@@ -246,7 +239,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20231029/3345115497/" class="nav__link">
+                <a href="/javascript/20231108/1989175817/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -255,7 +248,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #5 基本型別：字串
+                            #15 逗號運算子
                         </div>
                     </div>
                 </a>
@@ -263,13 +256,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20231027/1250803838/" class="nav__link">
+                <a href="/javascript/20231106/2323189855/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #3 變數
+                            #13 賦值運算子
                         </div>
                     </div>
                     <div>

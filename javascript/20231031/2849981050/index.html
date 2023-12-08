@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="簡介布林值、null、undefined 與 symbol 等資料型別的常見應用。">
+    <meta name="description" content="簡介布林值、 null 、 undefined  與 symbol 等資料型別的常見應用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#7 基本型別：布林值、null、undefined 與 symbol">
 <meta property="og:url" content="https://chunjull.github.io/javascript/20231031/2849981050/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="簡介布林值、null、undefined 與 symbol 等資料型別的常見應用。">
+<meta property="og:description" content="簡介布林值、 null 、 undefined  與 symbol 等資料型別的常見應用。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-10-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-31T16:01:34.326Z">
+<meta property="article:modified_time" content="2023-12-08T08:58:29.684Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -175,18 +175,18 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>簡介布林值、null、undefined 與 symbol 等資料型別的常見應用。</p>
+        <p>簡介布林值、 <code>null</code> 、 <code>undefined</code>  與 <code>symbol</code> 等資料型別的常見應用。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><h3 id="布林值"><a href="#布林值" class="headerlink" title="布林值"></a>布林值</h3><p>布林值（boolean）通常用在判斷式，作為控制程式流程的用途。<br>其值只有兩種：true 及 false。</p>
-<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>null 型別只有一種值——null（空值），代表「此變數可能曾經有值，也可能沒有值，<strong>現在沒有值</strong>」。<br>例如：以下案例中的 a ，明確表示此變數沒有值。</p>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><h3 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h3><p>布林值（boolean）通常用在判斷式，作為控制程式流程的用途。<br>其值只有兩種：<code>true</code> 及 <code>false</code>。</p>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p><code>null</code> 型別只有一種值——<code>null</code>（空值），代表「此變數可能曾經有值，也可能沒有值，<strong>現在沒有值</strong>」。<br>例如：以下案例中的 a ，明確表示此變數沒有值。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>; <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
-<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>undefined 型別也只有一種值——undefined，代表「此變數<strong>還沒有給值</strong>，所以不知道是什麼」。<br>例如：以下案例的 b，當變數 b 被宣告時，其值還沒有定義或還未指定的情況下，預設值會是 undefined。</p>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p><code>undefined</code> 型別也只有一種值——<code>undefined</code>，代表「此變數<strong>還沒有給值</strong>，所以不知道是什麼」。<br>例如：以下案例的 b，當變數 b 被宣告時，其值還沒有定義或還未指定的情況下，預設值會是 <code>undefined</code>。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-<h3 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h3><p>symbol 是 ES6 新增的基本資料型別，用來表示獨一無二的值，以避免名稱相同造成的衝突。</p>
+<h3 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h3><p><code>symbol</code> 是 ES6 新增的基本資料型別，用來表示獨一無二的值，以避免名稱相同造成的衝突。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> symbol1 = <span class="title class_">Symbol</span>();</span><br><span class="line"><span class="keyword">typeof</span> symbol1; <span class="comment">// symbol</span></span><br></pre></td></tr></table></figure>
 <h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
 <li>在 JS 判斷比較的運算式中，所有內容都可以轉換為布林值。</li>
-<li><code>typeof null</code> 回傳結果是<code>“obejct”</code> ，而非 null。這其實是一個 Bug！但因為修正該問題，會影響太多舊程式，最後只好保留這個錯誤。</li>
+<li><code>typeof null</code> 回傳結果是<code>“obejct”</code> ，而非 <code>null</code>。這其實是一個 Bug！但因為修正該問題，會影響太多舊程式，最後只好保留這個錯誤。</li>
 </ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.fooish.com/javascript/ES6/Symbol.html">fooish－JavaScript ES6 Symbol 資料型態</a>：了解 Symbol 的使用情境。</li>
@@ -196,7 +196,7 @@
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2023-11-01</p></div>
+<div class="post-footer__meta"><p>更新於 2023-12-08</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>

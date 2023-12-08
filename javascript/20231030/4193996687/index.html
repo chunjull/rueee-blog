@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="數字型別除了基礎運算，NaN 與浮點數問題也相當重要。">
+    <meta name="description" content="數字型別除了基礎運算， NaN 與浮點數問題也相當重要。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#6 基本型別：數字">
 <meta property="og:url" content="https://chunjull.github.io/javascript/20231030/4193996687/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="數字型別除了基礎運算，NaN 與浮點數問題也相當重要。">
+<meta property="og:description" content="數字型別除了基礎運算， NaN 與浮點數問題也相當重要。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-10-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-30T13:14:47.416Z">
+<meta property="article:modified_time" content="2023-12-08T08:59:10.598Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -175,16 +175,16 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>數字型別除了基礎運算，NaN 與浮點數問題也相當重要。</p>
+        <p>數字型別除了基礎運算， <code>NaN</code> 與浮點數問題也相當重要。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>JS 只有一種數字的型別，不論整數、浮點數，或 Infinity（無限大）、-Infinity（負無限大）及 NaN（不是數值）等特殊數字，都屬於 number 型別。</p>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>JS 只有一種數字的型別，不論整數、浮點數，或 <code>Infinity</code>（無限大）、<code>-Infinity</code>（負無限大）及 <code>NaN</code>（不是數值）等特殊數字，都屬於 <code>number</code> 型別。</p>
 <h3 id="數字使用方式"><a href="#數字使用方式" class="headerlink" title="數字使用方式"></a>數字使用方式</h3><p>數字有兩種使用方式：字面常量與科學記號表示法。</p>
-<ul>
-<li>字面常量：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">90</span>;</span><br><span class="line"><span class="keyword">var</span> y = <span class="number">12.34</span>;</span><br></pre></td></tr></table></figure></li>
-<li>科學記號表示法：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">101e3</span>; <span class="comment">// 101000</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="number">101e-3</span>; <span class="comment">// 0.101</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="無限的計算方式"><a href="#無限的計算方式" class="headerlink" title="無限的計算方式"></a>無限的計算方式</h3><p>Infinity 與 -Infinity 分別代表數學上的無限大與負無限大。<br>任何正數除以 0，結果會得到 Infinity；相反的，任何負數除以 0，結果會是 -Infinity。</p>
-<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>NaN 不等於任何數字，甚至是自己。因此，它與任何數字運算，結果都是 NaN。<br>然而，使用 <code>typeof</code> 判斷 NaN 型別時，回傳結果卻是數字。<br>那麼該如何判斷一個變數是否為 NaN 呢？可以透過 <code>isNaN(value)</code> 函式來協助：</p>
+<p>字面常量：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">90</span>;</span><br><span class="line"><span class="keyword">var</span> y = <span class="number">12.34</span>;</span><br></pre></td></tr></table></figure>
+<p>科學記號表示法：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">101e3</span>; <span class="comment">// 101000</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="number">101e-3</span>; <span class="comment">// 0.101</span></span><br></pre></td></tr></table></figure>
+<h3 id="無限的計算方式"><a href="#無限的計算方式" class="headerlink" title="無限的計算方式"></a>無限的計算方式</h3><p><code>Infinity</code> 與 <code>-Infinity</code> 分別代表數學上的無限大與負無限大。<br>任何正數除以 0，結果會得到 <code>Infinity</code>；相反的，任何負數除以 0，結果會是 <code>-Infinity</code>。</p>
+<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p><code>NaN</code> 不等於任何數字，甚至是自己。因此，它與任何數字運算，結果都是 <code>NaN</code>。<br>然而，使用 <code>typeof</code> 判斷 <code>NaN</code> 型別時，回傳結果卻是數字。<br>那麼該如何判斷一個變數是否為 <code>NaN</code> 呢？可以透過 <code>isNaN(value)</code> 函式來協助：</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="title class_">NaN</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="number">123</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// false, 字串型別會被自動轉型成數字</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">&quot;NaN&quot;</span>); <span class="comment">// true, 字串 &quot;NaN&quot; 無法轉型成數字</span></span><br></pre></td></tr></table></figure>
 <h3 id="浮點數"><a href="#浮點數" class="headerlink" title="浮點數"></a>浮點數</h3><p>JS 在運算 <code>0.1 + 0.2</code> 時，其結果不是 <code>0.3</code>，而是 <code>0.30000000000000004</code> 。因此執行 <code>0.1 + 0.2 === 0.3</code> 會回傳 false 的結果。<br>這是因為 JS 採用「IEEE 754」六十四位元二進位浮點數算術標準，十進位的小數無法完美的用二進位表示，只能用無限循環的位數來趨近於十進位的小數，導致還原時的小數不夠精準。<br>透過 <code>toFixed()</code> 和 <code>toPrecision()</code> 設定精確度，可以避免浮點數問題。<br>例如：設定精確到小數第一位。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="number">0.1</span> + <span class="number">0.2</span>).<span class="title function_">toFixed</span>(<span class="number">1</span>)); <span class="comment">// 0.3</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="number">0.1</span> + <span class="number">0.2</span>).<span class="title function_">toPrecision</span>(<span class="number">1</span>)); <span class="comment">// 0.3</span></span><br></pre></td></tr></table></figure>
@@ -193,14 +193,14 @@
 </ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Math">MDN－Math 物件</a>：了解 <code>Math</code> 的常見用法。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/NaN">MDN－NaN</a>：了解 NaN 的使用方式與相關限制。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/NaN">MDN－NaN</a>：了解 <code>NaN</code> 的使用方式與相關限制。</li>
 <li><a target="_blank" rel="noopener" href="https://0.30000000000000004.com/">Floating Point Math</a>：解釋 <code>0.1 + 0.2 !== 0.3</code> 的原理與彙整各程式語言計算方式。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2023-10-30</p></div>
+<div class="post-footer__meta"><p>更新於 2023-12-08</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
