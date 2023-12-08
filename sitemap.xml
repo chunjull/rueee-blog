@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chunjull.github.io/javascript/20231025/1925797630/</loc>
+    
+    <lastmod>2023-12-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chunjull.github.io/javascript/20231027/1250803838/</loc>
+    
+    <lastmod>2023-12-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chunjull.github.io/javascript/20231102/712042596/</loc>
     
     <lastmod>2023-11-02</lastmod>
@@ -47,15 +65,6 @@
   </url>
   
   <url>
-    <loc>https://chunjull.github.io/javascript/20231025/1925797630/</loc>
-    
-    <lastmod>2023-10-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chunjull.github.io/javascript/20231028/764880996/</loc>
     
     <lastmod>2023-10-29</lastmod>
@@ -66,15 +75,6 @@
   
   <url>
     <loc>https://chunjull.github.io/javascript/20231026/1784042972/</loc>
-    
-    <lastmod>2023-10-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chunjull.github.io/javascript/20231027/1250803838/</loc>
     
     <lastmod>2023-10-29</lastmod>
     
@@ -148,22 +148,22 @@
 
   <url>
     <loc>https://chunjull.github.io/</loc>
-    <lastmod>2023-11-02</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://chunjull.github.io/tags/JavaScript/</loc>
-    <lastmod>2023-11-02</lastmod>
+    <loc>https://chunjull.github.io/tags/%E9%96%B1%E8%AE%80%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chunjull.github.io/tags/%E9%96%B1%E8%AE%80%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2023-11-02</lastmod>
+    <loc>https://chunjull.github.io/tags/JavaScript/</loc>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -171,15 +171,15 @@
 
   
   <url>
-    <loc>https://chunjull.github.io/categories/javascript/</loc>
-    <lastmod>2023-11-02</lastmod>
+    <loc>https://chunjull.github.io/categories/read/</loc>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chunjull.github.io/categories/read/</loc>
-    <lastmod>2023-11-02</lastmod>
+    <loc>https://chunjull.github.io/categories/javascript/</loc>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

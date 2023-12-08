@@ -1,12 +1,12 @@
+https://chunjull.github.io/javascript/20231025/1925797630/
+https://chunjull.github.io/javascript/20231027/1250803838/
 https://chunjull.github.io/javascript/20231102/712042596/
 https://chunjull.github.io/javascript/20231101/3927311135/
 https://chunjull.github.io/javascript/20231031/2849981050/
 https://chunjull.github.io/javascript/20231030/4193996687/
 https://chunjull.github.io/javascript/20231029/3345115497/
-https://chunjull.github.io/javascript/20231025/1925797630/
 https://chunjull.github.io/javascript/20231028/764880996/
 https://chunjull.github.io/javascript/20231026/1784042972/
-https://chunjull.github.io/javascript/20231027/1250803838/
 https://chunjull.github.io/read/20231024/861377249/
 https://chunjull.github.io/about/index.html
 https://chunjull.github.io/404.html
@@ -15,7 +15,7 @@ https://chunjull.github.io/categories/index.html
 https://chunjull.github.io/archives/index.html
 https://chunjull.github.io/search/index.html
 https://chunjull.github.io/
-https://chunjull.github.io/tags/JavaScript/
 https://chunjull.github.io/tags/%E9%96%B1%E8%AE%80%E5%BF%83%E5%BE%97/
-https://chunjull.github.io/categories/javascript/
+https://chunjull.github.io/tags/JavaScript/
 https://chunjull.github.io/categories/read/
+https://chunjull.github.io/categories/javascript/
