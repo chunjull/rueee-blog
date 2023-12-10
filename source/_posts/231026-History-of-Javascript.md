@@ -1,6 +1,6 @@
 ---
 title: '#2 JS 發展簡史'
-category: JS一分鐘
+category: DoJS
 tags:
   - JavaScript
 abbrlink: 1784042972

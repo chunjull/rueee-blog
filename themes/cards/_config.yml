@@ -58,8 +58,8 @@ navbar:
       url: /categories/
     - name: 歸檔
       url: /archives/
-    - name: 關於
-      url: /about/
+#    - name: 關於
+#      url: /about/
 
   # 导航栏永远显示在屏幕顶端
   # 仅当屏幕宽度不小于 1080 px 时生效
@@ -140,7 +140,7 @@ meta:
   
   # 默认文章作者（可在front-matter中覆盖）
   author:
-    name: Rueee
+    name: Juby
     url: https://chunjull.github.io/
   
   # 文章创建日期
