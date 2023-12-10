@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#20 條件判斷：三元運算子 | JubyDoWhat</title>
+<title>#26 函式：定義 | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="三元運算子也提供簡潔的條件判斷方式。">
+    <meta name="description" content="函式有三種定義方式，並可分為具名、匿名兩種。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#20 條件判斷：三元運算子">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20231113/4128159221/index.html">
+<meta property="og:title" content="#26 函式：定義">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231119/115912181/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="三元運算子也提供簡潔的條件判斷方式。">
+<meta property="og:description" content="函式有三種定義方式，並可分為具名、匿名兩種。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-11-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-10T14:44:30.914Z">
+<meta property="article:published_time" content="2023-11-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-10T15:09:31.270Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -150,10 +150,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #20 條件判斷：三元運算子
+        #26 函式：定義
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2023/11/" class="post-meta__date button">2023-11-13</a>
+        <a href="/archives/2023/11/" class="post-meta__date button">2023-11-19</a>
         
     
     
@@ -175,44 +175,29 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>三元運算子也提供簡潔的條件判斷方式。</p>
+        <p>函式有三種定義方式，並可分為具名、匿名兩種。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>在 JS 的運算子種類中，存在一個用途跟 <code>if...else</code> 和 <code>switch</code> 很接近的運算子——三元運算子。<br>三元運算子，又稱「條件運算子」，是 JS 中唯一用到三個運算元的運算子，以「條件」、「問號」、「冒號」三個元素所組成。<br>在一個條件後面會跟著一個問號，如果條件是「truthy」，在冒號前的表達式會被執行；如果條件是「falsy」，在冒號後面的表達式會被執行。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(條件) ? [數值/運算式 A] : [數值/運算式 B];</span><br></pre></td></tr></table></figure>
-
-<p>案例說明：判斷變數 <code>age</code> 是否大於或等於 18，若是，則 <code>status = &quot;成人&quot;</code> ；若不是，則 <code>status = &quot;小孩&quot;</code> 。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> status = (age &gt;= <span class="number">18</span>) ? <span class="string">&quot;成人&quot;</span> : <span class="string">&quot;小孩&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="條件判斷整理"><a href="#條件判斷整理" class="headerlink" title="條件判斷整理"></a>條件判斷整理</h3><table>
-<thead>
-<tr>
-<th>條件判斷方式</th>
-<th>特色</th>
-<th>範例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>if...else</code></td>
-<td>推薦「入門學習者」使用</td>
-<td><code>if (5 &gt; 2)&#123;console.log(”true”);&#125; else &#123; console.log(”false”);&#125;</code></td>
-</tr>
-<tr>
-<td><code>switch</code></td>
-<td>推薦「複雜判斷」使用</td>
-<td><code>switch()&#123;case1:…;&#125;</code></td>
-</tr>
-<tr>
-<td>三元運算子</td>
-<td>推薦「簡單判斷」使用</td>
-<td><code>max = (a &gt; b)? a : b ;</code></td>
-</tr>
-</tbody></table>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>函式有三種定義方式：</p>
+<ul>
+<li>函式宣告（Function Declaration）。</li>
+<li>函式運算式（Function Expressions）。</li>
+<li>透過關鍵字 <code>new Function</code> 建立函式。</li>
+</ul>
+<h3 id="函式宣告"><a href="#函式宣告" class="headerlink" title="函式宣告"></a>函式宣告</h3><p>「函式宣告」是最常見的用法。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">number</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> number * number;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="函式運算式"><a href="#函式運算式" class="headerlink" title="函式運算式"></a>函式運算式</h3><p>將函式透過 <code>=</code> 指定給某個變數。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> square = <span class="keyword">function</span> (<span class="params">number</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> number * number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="透過關鍵字-new-Function-建立函式。"><a href="#透過關鍵字-new-Function-建立函式。" class="headerlink" title="透過關鍵字 new Function 建立函式。"></a>透過關鍵字 new Function 建立函式。</h3><p>因效能較差，實務上較少使用。<br>使用關鍵字 <code>new Function</code> 建立函式物件。<br>將參數與函式的內容依序傳入 <code>Function</code> ，即可建立一個函式物件。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> square = <span class="keyword">new</span> <span class="title class_">Function</span>(<span class="string">&quot;number&quot;</span>, <span class="string">&quot;return number * number&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="匿名函式"><a href="#匿名函式" class="headerlink" title="匿名函式"></a>匿名函式</h3><p>在前面「函式運算式」的範例中，可以發現：該函式是「沒有名字」的。<br>這種沒有名字的函式被稱為「匿名函式」。</p>
 <h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
-<li>三元運算子通常被用來當作 <code>if...else</code> 的簡潔寫法。</li>
+<li>有名字的「具名函式」只在「自己函式的區塊內」有效，換言之，脫離函式自身的 <code>&#123;&#125;</code> 區塊後，該變數就不存在。</li>
 </ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_operator">MDN－三元運算子</a>：了解三元運算子的常見用法。</li>
-<li><a target="_blank" rel="noopener" href="https://javascript.alphacamp.co/condition.html">ALPHACamp－流程控制 if&#x2F;else 條件判斷</a>：複習三種流程控制的條件判斷方式。</li>
-<li><a href="https://chunjull.github.io/javascript/20231109/3042451770/">#16 邏輯運算子</a>：回顧「falsy」和「truthy」的觀念。</li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191549">Kuro－函式的基本概念</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions">MDN－函式</a>：了解函式的常見用法。</li>
+<li><a target="_blank" rel="noopener" href="https://hsuchihting.github.io/javascript/20200812/1474477581/">Tim－具名函式與匿名函式的基本認識</a>：了解匿名函式的使用方式。</li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10207740">OneJar－函數定義 (Function Definition) 的 100 種寫法</a>：了解更多種函式定義方式。</li>
 </ul>
 
     </div>
@@ -227,7 +212,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20231114/1973875290/" class="nav__link">
+                <a href="/javascript/20231120/576908797/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -236,7 +221,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #21 迴圈：for
+                            #27 常用的內建函式：Number
                         </div>
                     </div>
                 </a>
@@ -244,13 +229,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20231112/52344673/" class="nav__link">
+                <a href="/javascript/20231118/1806621739/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #19 條件判斷：switch
+                            #25 函式：宣告
                         </div>
                     </div>
                     <div>

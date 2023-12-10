@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#20 條件判斷：三元運算子 | JubyDoWhat</title>
+<title>#23 迴圈：break 與 continue | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="三元運算子也提供簡潔的條件判斷方式。">
+    <meta name="description" content="break 和 continue 都能中斷迴圈，但兩者的功能並不同。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#20 條件判斷：三元運算子">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20231113/4128159221/index.html">
+<meta property="og:title" content="#23 迴圈：break 與 continue">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231116/2461366595/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="三元運算子也提供簡潔的條件判斷方式。">
+<meta property="og:description" content="break 和 continue 都能中斷迴圈，但兩者的功能並不同。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-11-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-10T14:44:30.914Z">
+<meta property="article:published_time" content="2023-11-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-10T15:09:31.267Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -150,10 +150,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #20 條件判斷：三元運算子
+        #23 迴圈：break 與 continue
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2023/11/" class="post-meta__date button">2023-11-13</a>
+        <a href="/archives/2023/11/" class="post-meta__date button">2023-11-16</a>
         
     
     
@@ -175,44 +175,23 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>三元運算子也提供簡潔的條件判斷方式。</p>
+        <p><code>break</code> 和 <code>continue</code> 都能中斷迴圈，但兩者的功能並不同。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>在 JS 的運算子種類中，存在一個用途跟 <code>if...else</code> 和 <code>switch</code> 很接近的運算子——三元運算子。<br>三元運算子，又稱「條件運算子」，是 JS 中唯一用到三個運算元的運算子，以「條件」、「問號」、「冒號」三個元素所組成。<br>在一個條件後面會跟著一個問號，如果條件是「truthy」，在冒號前的表達式會被執行；如果條件是「falsy」，在冒號後面的表達式會被執行。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(條件) ? [數值/運算式 A] : [數值/運算式 B];</span><br></pre></td></tr></table></figure>
-
-<p>案例說明：判斷變數 <code>age</code> 是否大於或等於 18，若是，則 <code>status = &quot;成人&quot;</code> ；若不是，則 <code>status = &quot;小孩&quot;</code> 。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> status = (age &gt;= <span class="number">18</span>) ? <span class="string">&quot;成人&quot;</span> : <span class="string">&quot;小孩&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="條件判斷整理"><a href="#條件判斷整理" class="headerlink" title="條件判斷整理"></a>條件判斷整理</h3><table>
-<thead>
-<tr>
-<th>條件判斷方式</th>
-<th>特色</th>
-<th>範例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>if...else</code></td>
-<td>推薦「入門學習者」使用</td>
-<td><code>if (5 &gt; 2)&#123;console.log(”true”);&#125; else &#123; console.log(”false”);&#125;</code></td>
-</tr>
-<tr>
-<td><code>switch</code></td>
-<td>推薦「複雜判斷」使用</td>
-<td><code>switch()&#123;case1:…;&#125;</code></td>
-</tr>
-<tr>
-<td>三元運算子</td>
-<td>推薦「簡單判斷」使用</td>
-<td><code>max = (a &gt; b)? a : b ;</code></td>
-</tr>
-</tbody></table>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>使用迴圈時，有時會需要跳過其中幾次或提早離開迴圈。<br>這時，可以使用 <code>break</code> 和 <code>continue</code> 語法。</p>
+<h3 id="break-語法"><a href="#break-語法" class="headerlink" title="break 語法"></a>break 語法</h3><p> <code>break</code> 會直接跳離迴圈。<br>例如：在包含一堆 <code>0</code> 和其他數字的陣列中找出不是 <code>0</code> 的「第一個數字」。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (arr[i] !== <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(arr[i]);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>找出那個不是 <code>0</code> 的「第一個數字」，印出後再退出迴圈。</p>
+<h3 id="continue-語法"><a href="#continue-語法" class="headerlink" title="continue 語法"></a>continue 語法</h3><p> <code>continue</code> 會跳過一次，再繼續下一次的迴圈。<br>例如：當我們要印出 1～10 的所有正整數，但跳過 3 的倍數。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (i % <span class="number">3</span> === <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 1, 2, 4, 5, 7, 8, 10</span></span><br></pre></td></tr></table></figure>
+<p>在此案例中， <code>i</code> 能被 3 整除表示 <code>i</code> 是 3 的倍數，遇到 <code>continue</code> 則會跳過。</p>
 <h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
-<li>三元運算子通常被用來當作 <code>if...else</code> 的簡潔寫法。</li>
+<li>在迴圈中，可能會常看到 <code>arr.length</code> 的類似語法，這代表「陣列的長度」，常被放在 <code>for</code> 的條件部分。</li>
 </ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Conditional_operator">MDN－三元運算子</a>：了解三元運算子的常見用法。</li>
-<li><a target="_blank" rel="noopener" href="https://javascript.alphacamp.co/condition.html">ALPHACamp－流程控制 if&#x2F;else 條件判斷</a>：複習三種流程控制的條件判斷方式。</li>
-<li><a href="https://chunjull.github.io/javascript/20231109/3042451770/">#16 邏輯運算子</a>：回顧「falsy」和「truthy」的觀念。</li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191453">Kuro－流程判斷與迴圈</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/break">MDN－break 語法</a>：了解 <code>break</code> 的常見用法。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/continue">MDN－continue 語法</a>：了解 <code>continue</code> 的常見用法。</li>
+<li><a target="_blank" rel="noopener" href="https://javascript.alphacamp.co/loop.html">ALPHACamp－Loop 迴圈</a>：了解 JS 的迴圈用法。</li>
 </ul>
 
     </div>
@@ -227,7 +206,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20231114/1973875290/" class="nav__link">
+                <a href="/javascript/20231117/1831802184/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -236,7 +215,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #21 迴圈：for
+                            #24 變數儲存模型
                         </div>
                     </div>
                 </a>
@@ -244,13 +223,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20231112/52344673/" class="nav__link">
+                <a href="/javascript/20231115/1598197283/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #19 條件判斷：switch
+                            #22 迴圈：while
                         </div>
                     </div>
                     <div>
