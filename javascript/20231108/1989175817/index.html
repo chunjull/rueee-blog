@@ -51,7 +51,7 @@
 <meta property="og:description" content="逗號運算子可以分隔運算式，或同時宣告多組變數。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-11-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-08T09:31:23.161Z">
+<meta property="article:modified_time" content="2023-12-10T13:30:48.707Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -178,7 +178,7 @@
         <p>逗號運算子可以分隔運算式，或同時宣告多組變數。</p>
 <span id="more"></span>
 <h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>逗號運算子主要工作為：用逗號分隔運算式，使其依序由左至右執行，並且會回傳最後一個運算式的值。</p>
-<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>逗號運算子由逗號「,」表示，透過逗號運算子可以將多組運算式看作是同一個，最常出現在 <code>for</code> 迴圈中。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>逗號運算子由逗號 <code>,</code> 表示，透過逗號運算子可以將多組運算式看作是同一個，最常出現在 <code>for</code> 迴圈中。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>, j = <span class="number">10</span>; i &lt; <span class="number">10</span>; i++, j++) &#123;</span><br><span class="line">	k = i + j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="進階用法"><a href="#進階用法" class="headerlink" title="進階用法"></a>進階用法</h3><p>此外，逗號運算子也可以宣告變數。具體來說，可以同時宣告多組變數，且給予預設值。<br>值得注意的是，若使用錯誤方式同時宣告多組變數，可能會造成「全域變數」的大麻煩！<br>以下展示正確與錯誤的宣告方式。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始方式</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// 正確改寫</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>, b = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// 錯誤改寫</span></span><br><span class="line"><span class="keyword">var</span> a = b = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
@@ -186,13 +186,13 @@
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = b = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// 拆開來後</span></span><br><span class="line">b = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> a = b; <span class="comment">// 注意！變數 b 沒有被 var 宣告，但變數 a 有被宣告</span></span><br></pre></td></tr></table></figure>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191343">Kuro－Boolean 的真假判斷</a>：本文最主要的參考範例。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Comma_operator">MDN－逗號運算子（簡體）</a>觀看更多逗號運算子的範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Comma_operator">MDN－逗號運算子</a>：觀看更多逗號運算子的範例。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2023-12-08</p></div>
+<div class="post-footer__meta"><p>更新於 2023-12-10</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
@@ -200,6 +200,20 @@
 
     <div class="nav">
         <div class="nav__prev">
+            
+                <a href="/javascript/20231109/3042451770/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #16 邏輯運算子
+                        </div>
+                    </div>
+                </a>
             
         </div>
         <div class="nav__next">

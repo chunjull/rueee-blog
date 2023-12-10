@@ -51,7 +51,7 @@
 <meta property="og:description" content="賦值運算子能讓運算的處理更簡潔、便利。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-11-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-08T09:30:32.242Z">
+<meta property="article:modified_time" content="2023-12-10T13:29:10.842Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -180,11 +180,8 @@
 <h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>賦值運算子，或稱指派、指定運算子，用途為：指定一個值給一個變數。</p>
 <h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>只有一個等號 <code>=</code> 是「指定、指派、賦值」的意思。<br>例如下方案例：用 &#x3D; 符號將右側的運算式結果「指派」給等號左側的變數 a。</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span> * <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="進階用法"><a href="#進階用法" class="headerlink" title="進階用法"></a>進階用法</h3><p>賦值運算子還可以結合數學運算子，會先將等號右側的內容運算完成，再指定至等號左側的變數，例如： <code>+=</code> 、 <code>-=</code> 。</p>
-<ul>
-<li>當賦值運算子的前後都是「數值」或「布林值」時，會視為數字後運算。</li>
-<li>當其中一個是字串時，則觸發自動轉型，用字串聯結。<br>例如下方案例： <code>a += 10</code> 代表 <code>a = a + 10</code>。<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">a += <span class="number">10</span>; <span class="comment">// 代表 a = a + 10;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 20</span></span><br></pre></td></tr></table></figure></li>
-</ul>
+<h3 id="進階用法"><a href="#進階用法" class="headerlink" title="進階用法"></a>進階用法</h3><p>賦值運算子還可以結合數學運算子，會先將等號右側的內容運算完成，再指定至等號左側的變數，例如： <code>+=</code> 、 <code>-=</code> 。<br>當賦值運算子的前後都是「數值」或「布林值」時，會視為數字後運算。<br>而當其中一個是字串時，則觸發自動轉型，用字串聯結。<br>例如下方案例： <code>a += 10</code> 代表 <code>a = a + 10</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">a += <span class="number">10</span>; <span class="comment">// 代表 a = a + 10;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
 <h3 id="運算子整理"><a href="#運算子整理" class="headerlink" title="運算子整理"></a>運算子整理</h3><table>
 <thead>
 <tr>
@@ -235,7 +232,7 @@
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2023-12-08</p></div>
+<div class="post-footer__meta"><p>更新於 2023-12-10</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
