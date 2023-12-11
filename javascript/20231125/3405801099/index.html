@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#32 變數提升 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="「提升」使得變數在宣告之前被使用會回傳 undefined 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#32 變數提升">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231125/3405801099/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="「提升」使得變數在宣告之前被使用會回傳 undefined 。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-11-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-11T06:18:13.402Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #32 變數提升
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/11/" class="post-meta__date button">2023-11-25</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">2 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>「提升」使得變數在宣告之前被使用會回傳 <code>undefined</code> 。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>變數提升（Variables Hoisting）會把變數和函數的宣告移動到程式區塊頂端，直到實際執行時再賦值。<br>看起來是將變數和函數的宣告「移動」到程式區塊頂端。但在編譯階段時，變數和函式的宣告會先被放入記憶體，實際在程式碼中位置還是一樣。<br>換言之，如果在宣告前使用相應的變數，瀏覽器會先將該變數「提升」至程式區塊頂端並宣告，但尚未賦值，因此，此時會印出 <code>undefined</code> ，直到程式執行到相關的宣告程式碼時，才會賦值。<br>舉例來說：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> word;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(word); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> word = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(word); <span class="comment">// hello</span></span><br></pre></td></tr></table></figure>
+<p>在宣告變數 <code>word</code> 時尚未賦值，只會印出 <code>undefined</code> 的結果；直到變數 <code>word</code> 被執行並賦值時，才會回傳 <code>hello</code> 的結果。</p>
+<h3 id="進階案例"><a href="#進階案例" class="headerlink" title="進階案例"></a>進階案例</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> doSomeThing = <span class="keyword">function</span>(<span class="params">y</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(x); <span class="comment">// ?</span></span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">doSomeThing</span>(<span class="number">50</span>)); <span class="comment">// 150</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>在這個案例中， <code>console.log(x)</code> 的回傳值會是 <code>undefined</code> 。<br>因為，對瀏覽器來說，這時的程式碼會呈現下面的樣子：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> doSomeThing = <span class="keyword">function</span>(<span class="params">y</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> x;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(x); <span class="comment">// ?</span></span><br><span class="line">  x = <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">doSomeThing</span>(<span class="number">50</span>)); <span class="comment">// 150</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(x); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>JS 會先在自己的作用域尋找變數 <code>x</code> ，發現在下面的 <code>var x = 100</code> 有宣告，就只會把「宣告的語法」提升到該作用域（即這個案例的 <code>function</code> ）的最上面，因此只會印出 <code>undefined</code> 的結果。</p>
+<h3 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h3><p>為了解決 JS 「變數提升」的奇怪特性，建議使用以下兩種方式：</p>
+<ol>
+<li>先宣告再使用，所有可能用到的變數都盡量在「作用域的最上面」宣告完成後再使用。</li>
+<li>使用 ES6 的 <code>let</code> 或 <code>const</code> 代替，因為 <code>let</code> 宣告的變數不會有變數提升的特性。</li>
+</ol>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>只有宣告的變數會提升，賦值不會提升。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191549">Kuro－函式的基本概念</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting">MDN－提升</a>：了解變數提升的概念。</li>
+<li><a target="_blank" rel="noopener" href="https://jianline.com/javascript-hoisting/">阿建－JavaScript 提升(Hoisting)是什麼?關於提升的5個觀念</a>：了解變數提升的概念。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">Huli－我知道你懂 hoisting，可是你了解到多深？</a>：深入了解變數提升的概念。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2023-12-11</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/javascript/20231126/1744441320/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #33 暫時性死區
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20231124/3746595863/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #31 變數的有效範圍
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2023 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
