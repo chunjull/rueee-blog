@@ -33,22 +33,27 @@
     <!-- meta -->
 
 
-<title>歸檔：2023/12 | JubyDoWhat</title>
+<title>#51 DOM：節點刪除 | JubyDoWhat</title>
 
+
+    <meta name="keywords" content="JavaScript">
 
 
 
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Juby Do What">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JubyDoWhat">
-<meta property="og:url" content="https://chunjull.github.io/archives/2023/12/page/2/index.html">
+    <meta name="description" content="removeChild() 可以移除單一節點； innerHTML 則可以清空所有內容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#51 DOM：節點刪除">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231214/2687438073/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="Juby Do What">
+<meta property="og:description" content="removeChild() 可以移除單一節點； innerHTML 則可以清空所有內容。">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-12-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-14T03:21:31.947Z">
 <meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
 
 
@@ -57,6 +62,13 @@
  
 
     
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
     
     
 
@@ -129,132 +141,84 @@
 </header>
 
 
+            <main class="main">
     
 
-            
-<main class='main'>
-    
-		
-    <div class="post-list">
+<div class="post-title">
+    <h1 class="post-title__text">
+        #51 DOM：節點刪除
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/12/" class="post-meta__date button">2023-12-14</a>
         
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header"></div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        #41 BOM
-    </h2>
     
-        <p>BOM 有兩種功能：全域物件與瀏覽器溝通窗口。</p>
     
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/12/" class="post-meta__date button">2023-12-04</a>
-    <span class="separate-dot"></span><span class="post-count">2 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
 
  
-</div>
-<div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
-<a href="/javascript/20231204/3425939589/" class="post-entry__link">#41 BOM</a>
-                </div>
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header"></div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        #40 瀏覽器與 JS
-    </h2>
-    
-        <p>瀏覽器提供網頁的操作方法，讓 JS 可以網頁中運作。</p>
-    
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/12/" class="post-meta__date button">2023-12-03</a>
-    <span class="separate-dot"></span><span class="post-count">1 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
 
  
-</div>
-<div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
-<a href="/javascript/20231203/1229881720/" class="post-entry__link">#40 瀏覽器與 JS</a>
-                </div>
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header"></div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        #39 可變的
-    </h2>
-    
-        <p>物件型別的「可變」特性，使其內容可以直接被更新。</p>
-    
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/12/" class="post-meta__date button">2023-12-02</a>
-    <span class="separate-dot"></span><span class="post-count">1 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
-
- 
-</div>
-<div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
-<a href="/javascript/20231202/1332088474/" class="post-entry__link">#39 可變的</a>
-                </div>
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header"></div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        #38 不可變的
-    </h2>
-    
-        <p>基本型別的「不可變」特性，使其值必須重新賦值才能更新。</p>
-    
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/12/" class="post-meta__date button">2023-12-01</a>
-    <span class="separate-dot"></span><span class="post-count">1 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
-
- 
-</div>
-<div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
-<a href="/javascript/20231201/2821490299/" class="post-entry__link">#38 不可變的</a>
-                </div>
-            
+        ・ <span class="post-count">1 min read</span>
         
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
     </div>
-    
-        <div class="nav">
-            <div class="nav__prev">
-                
-                    <a href="/archives/2023/12/" class="nav__link">
-                        <div>
-                            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
-                        </div>
-                        <div>
-                            <div class="nav__label">
-                                上一頁
-                            </div>
-                            <div class="nav__title">
-                                第 1 頁
-                            </div>
-                        </div>
-                    </a>
-                
-            </div>
-            <div class="nav__next">
-                
-            </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p><code>removeChild()</code> 可以移除單一節點； <code>innerHTML</code> 則可以清空所有內容。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>DOM 除了新增、修改等功能，還可以刪除節點。<br>透過 <code>removeChild()</code> 方法，可以將指定的 <code>childNode</code> 子節點刪除。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;myList&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Item 01<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Item 02<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>Item 03<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myList = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;myList&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> removeNode = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&quot;li&quot;</span>)[<span class="number">1</span>];</span><br><span class="line">myList.<span class="title function_">removeChild</span>(removeNode);</span><br></pre></td></tr></table></figure>
+<p>上述程式碼在取得容器後，會先取得 <code>&lt;li&gt;Item 02&lt;/li&gt;</code> 元素，再將 <code>myList</code> 下的 <code>removeNode</code> 節點刪除。</p>
+<h3 id="清空元素的內容"><a href="#清空元素的內容" class="headerlink" title="清空元素的內容"></a>清空元素的內容</h3><p> <code>removeChild()</code> 只能移除單一的網頁節點，如果需要將某個元素的內容清空，可以使用 <code>innerHTML</code> ，就可以輕鬆將 <code>myList</code> 裡面的 HTML 一口氣清空。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myList.<span class="property">innerHTML</span> = <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10191867">Kuro－DOM Node 的建立、刪除與修改</a>：本文最主要的參考範例。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2023-12-14</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
         </div>
-    
+        <div class="nav__next">
+            
+                <a href="/javascript/20231213/1334002290/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #50 DOM：節點修改
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
 
 
-	
+
+
+
 </main>
 
             <footer class="footer">
