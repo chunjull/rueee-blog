@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#52 DOM：節點樣式 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="可以透過 JS 修改 CSS 樣式，但盡量不要這麼做。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#52 DOM：節點樣式">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231215/2022605776/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="可以透過 JS 修改 CSS 樣式，但盡量不要這麼做。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-12-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-15T16:28:20.777Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #52 DOM：節點樣式
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/12/" class="post-meta__date button">2023-12-15</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">3 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>可以透過 JS 修改 CSS 樣式，但盡量不要這麼做。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>JS 有以下幾種常見的修改 CSS 樣式方法：</p>
+<ul>
+<li>直接修改元素的 <code>style</code> 屬性。</li>
+<li>透過修改 <code>className</code> 屬性或 <code>classList</code> 提供的 api 來修改元素的 class 屬性。</li>
+<li>利用 JS 直接寫入 CSS 樣式。</li>
+</ul>
+<h3 id="修改元素的-style-屬性"><a href="#修改元素的-style-屬性" class="headerlink" title="修改元素的 style 屬性"></a>修改元素的 style 屬性</h3><p>JS 修改元素的 style 屬性是對「行內樣式」進行修改。<br>是透過 DOM api 修改元素的行內樣式，因此，樣式優先級會高過多數的其他樣式寫法（ <code>!important</code> 除外）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> box = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.box&quot;</span>);</span><br><span class="line">box.<span class="property">style</span>.<span class="property">width</span> = <span class="string">&quot;50px&quot;</span>;</span><br><span class="line">box.<span class="property">style</span>.<span class="property">height</span> = <span class="string">&quot;50px&quot;</span>;</span><br><span class="line">box.<span class="property">style</span>.<span class="property">backgroundColor</span> = <span class="string">&quot;blue&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>特別注意！JS 的變數名稱及物件屬性名不允許使用 <code>-</code> 符號，所以在使用時要改為「駝峰式」寫法。</p>
+<h3 id="修改元素的-class-屬性"><a href="#修改元素的-class-屬性" class="headerlink" title="修改元素的 class 屬性"></a>修改元素的 class 屬性</h3><p>由於 <code>class</code> 是保留的關鍵字，所以 JS 實際上是透過 <code>className</code> 來操作網頁標籤內的 <code>class</code> 屬性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">article</span> <span class="attr">id</span>=<span class="string">&quot;article&quot;</span> <span class="attr">class</span>=<span class="string">&quot;small-font&quot;</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> article = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;#article&quot;</span>);</span><br><span class="line">article.<span class="property">className</span> = <span class="string">&quot;large-font&quot;</span>;</span><br><span class="line"><span class="comment">// 執行結果</span></span><br><span class="line"><span class="comment">// &lt;article class=&quot;large-font&quot;&gt; ... &lt;/article&gt;</span></span><br></pre></td></tr></table></figure>
+<p>但是，當有多組 class 時，直接修改 <code>className</code> 內的值，不會保留原本的 <code>class</code> 屬性，原本的 class 會被覆蓋。為了解決這個問題， DOM api 新增了一組 <code>classList</code> 屬性來取代原本的 <code>className</code> ，讓原本的 <code>class</code> 屬性被保留。<br>元素裡的 <code>classList</code> 屬性與 <code>className</code> 不同的是：它是一個「唯獨」的屬性。換言之，不能直接透過變更這個屬性來修改 DOM 的 <code>class</code> ，而是要利用 <code>classList.add()</code> 與 <code>classList.remove()</code> 修改它。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;article small-font&quot;</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> article = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.article&quot;</span>);</span><br><span class="line">article.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&quot;small-font&quot;</span>);</span><br><span class="line">article.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&quot;large-font&quot;</span>);</span><br><span class="line"><span class="comment">// 執行結果</span></span><br><span class="line"><span class="comment">// &lt;article class=&quot;article large-font&quot;&gt; ... &lt;/article&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="利用-JS-直接寫入-CSS-樣式"><a href="#利用-JS-直接寫入-CSS-樣式" class="headerlink" title="利用 JS 直接寫入 CSS 樣式"></a>利用 JS 直接寫入 CSS 樣式</h3><p>常見的做法有兩種：</p>
+<p>利用 <code>document.write</code> 在 <code>&lt;head&gt;</code> 寫入 CSS。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.write(&quot;<span class="tag">&lt;<span class="name">style</span>&gt;</span>element &#123;...&#125;<span class="tag">&lt;/<span class="name">style</span>&gt;</span>&quot;);</span><br><span class="line">document.write(&quot;<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;xxx.css&quot;</span> /&gt;</span>&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>利用 <code>document.createElement</code> 新增 <code>link</code> 標籤。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> head = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;head&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> linkTag = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;link&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (...) &#123;</span><br><span class="line">	linkTag.<span class="property">rel</span> = <span class="string">&quot;stylesheet&quot;</span>;</span><br><span class="line">	linkTag.<span class="property">type</span> = <span class="string">&quot;text/css&quot;</span>;</span><br><span class="line">	linkTag.<span class="property">href</span> = <span class="string">&quot;xxx.css&quot;</span>;</span><br><span class="line">	head.<span class="title function_">appendChild</span>(linkTag);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>透過這種方法的好處是：可以加入條件判斷來決定是否寫入 CSS 樣式。</p>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>通常來說，該交給 CSS 處理的樣式，就盡量不要用 JS 處理。</li>
+<li>CSS 分為行內樣式（inline-style）與外部樣式（external），前者是直接在 HTML 元素的 <code>style</code> 屬性進行設定；後者則會透過 <code>&lt;link&gt;</code> 連接外部 CSS 檔案。</li>
+<li>事實上，直接利用 JS 直接寫入 CSS 樣式是比較少見的做法，但在某些情況下確實是個實用的方式。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10218025">Greta Ma－如何用 JS 更改 HTML &amp; CSS 屬性</a>：了解動態更改元素樣式的方法。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2023-12-16</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/javascript/20231216/434066502/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #53 DOM：文字節點
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20231214/2687438073/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #51 DOM：節點刪除
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2023 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
