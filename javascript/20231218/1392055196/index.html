@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#54 DOM：innerHTML | JubyDoWhat</title>
+<title>#55 DOM：標籤屬性 | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="innerHTML 能夠將字串傳進 HTML 並進行渲染，但安全性較低。">
+    <meta name="description" content="透過 setAttribute 可以為標籤設定屬性。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#54 DOM：innerHTML">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20231217/3149519580/index.html">
+<meta property="og:title" content="#55 DOM：標籤屬性">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231218/1392055196/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="innerHTML 能夠將字串傳進 HTML 並進行渲染，但安全性較低。">
+<meta property="og:description" content="透過 setAttribute 可以為標籤設定屬性。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-12-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-17T08:29:06.332Z">
+<meta property="article:published_time" content="2023-12-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-18T03:31:12.911Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -146,10 +146,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #54 DOM：innerHTML
+        #55 DOM：標籤屬性
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2023/12/" class="post-meta__date button">2023-12-17</a>
+        <a href="/archives/2023/12/" class="post-meta__date button">2023-12-18</a>
         
     
     
@@ -171,60 +171,24 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p><code>innerHTML</code> 能夠將字串傳進 HTML 並進行渲染，但安全性較低。</p>
+        <p>透過 <code>setAttribute</code> 可以為標籤設定屬性。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>前面介紹過，可以利用 <code>document.createElement()</code> 的方式建立新元素。但此方法還需要搭配 <code>appendChild()</code> 、 <code>insertBefore()</code> 等語法將內容顯示在網頁中。<br>這時，如果透過 <code>innerHTML</code> 則可以讓我們用更簡潔的程式碼來使用 JS 操作 HTML。</p>
-<h3 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h3><p> <code>innerHTML</code> 可以較方便地插入、替換 HTML 內容，但仍有其限制：插入內容必須是<strong>字串</strong>型別。<br>嚴格來說， <code>innerHTML</code> 的插入內容必須是<strong>包含 HTML 標籤的字串</strong>。<br>另外，需要特別注意的是：若插入內容包含 class 屬性，要小心包圍 <code>class</code> 值的<strong>單雙引號</strong>不要跟外面包起來的引號重複，否則解譯器會不知道這一行程式碼的終點為何。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;main&quot;</span>);</span><br><span class="line">el.<span class="property">innerHTML</span> = <span class="string">&quot;&lt;p class=&#x27;red&#x27;&gt;Ya!&lt;/p&gt;&quot;</span>; <span class="comment">// 注意單雙引號的使用</span></span><br></pre></td></tr></table></figure>
-<h3 id="innerHTML-與-createElement-的比較"><a href="#innerHTML-與-createElement-的比較" class="headerlink" title="innerHTML 與 createElement 的比較"></a>innerHTML 與 createElement 的比較</h3><p>innerHTML：</p>
-<ul>
-<li>不需要搭配其他語法使用。</li>
-<li>組完字串後，傳進 HTML 裡進行渲染。</li>
-<li>安全性低，可能會成為網路攻擊的媒介，而導致安全問題。</li>
-<li>效能較高。<br>createElement：</li>
-<li>需搭配 <code>appendChild()</code> 使用，在 HTML 父元素下新增子元素。</li>
-<li>以建立一個新的 DOM 節點來處理。</li>
-<li>安全性高。</li>
-<li>效能較低。</li>
-</ul>
-<h3 id="重點整理"><a href="#重點整理" class="headerlink" title="重點整理"></a>重點整理</h3><table>
-<thead>
-<tr>
-<th></th>
-<th>使用方式</th>
-<th>優點</th>
-<th>缺點</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>innerHTML</td>
-<td>以字串渲染</td>
-<td>效能高</td>
-<td>安全性低</td>
-</tr>
-<tr>
-<td>createElement</td>
-<td>以 DOM 節點處理</td>
-<td>安全性高</td>
-<td>效能低</td>
-</tr>
-</tbody></table>
-<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
-<li>如果需要插入一段 HTML，而非替代它的內容，建議使用 <code>insertAdjacentHTML()</code> 方法。</li>
-<li>基於資安風險問題，插入純文字內容時，建議使用 <code>Node.textContent</code> 方法。</li>
-</ul>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>DOM 中也有針對標籤屬性的相關語法： <code>setAttribute</code> 。</p>
+<h3 id="setAttribute"><a href="#setAttribute" class="headerlink" title="setAttribute"></a>setAttribute</h3><p>針對指定元素去設定標籤屬性，若屬性已經存在，會更新該值；否則會為指定的名稱和值添加一個新屬性。<br> <code>setAttribute</code> 的語法為 <code>element.setAttribute(name, value);</code> ，第一個參數為屬性名稱，第二個參數為屬性值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Something...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;p&quot;</span>);</span><br><span class="line">el.<span class="title function_">setAttribute</span>(<span class="string">&quot;color&quot;</span>, <span class="string">&quot;red&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>上述程式碼會把 <code>color: red;</code> 的屬性加入到 <code>&lt;p&gt;</code> 標籤上。</p>
+<h3 id="補充用法"><a href="#補充用法" class="headerlink" title="補充用法"></a>補充用法</h3><p>如果想獲取某個屬性目前的值，可以使用 <code>getAttribute()</code> ；而若想刪除某屬性，則可使用 <code>removeAttribute()</code> 。<br>此外，還可以透過 <code>hasAttribute()</code> 檢查指定屬性是否存在。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> warning = el.<span class="title function_">getAttribute</span>(<span class="string">&quot;color&quot;</span>);</span><br><span class="line"><span class="title function_">alert</span>(warning); <span class="comment">// red</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(el.<span class="title function_">hasAttribute</span>(<span class="string">&quot;color&quot;</span>)); <span class="comment">// true</span></span><br><span class="line">el.<span class="title function_">removeAttribute</span>(<span class="string">&quot;color&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(el.<span class="title function_">hasAttribute</span>(<span class="string">&quot;color&quot;</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/innerHTML">MDN－innerHTML</a>：了解 <code>innerHTML</code> 的使用方式。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/insertAdjacentHTML">MDN－insertAdjacentHTML</a>：了解 <code>insertAdjacentHTML()</code> 的使用方式。</li>
-<li><a target="_blank" rel="noopener" href="https://hsuchihting.github.io/javascript/20200630/2965249736/">Tim－使用 JavaScript 插入 innerHTML</a>：觀看更多 <code>innerHTML</code> 範例。</li>
-<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10218607">Greta Ma－如何用 JS 新增 HTML 內容</a>：了解 <code>innerHTML</code> 與 <code>createElement</code> 的差異。</li>
-<li><a href="https://chunjull.github.io/javascript/20231212/929725069/">#49 DOM：節點新增</a>：回顧 <code>createElement</code> 新增節點的方式。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/setAttribute">MDN－setAttribute</a>：了解 <code>setAttribute</code> 的概念。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getAttribute">MDN－getAttribute</a>：了解 <code>getAttribute</code> 的概念。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2023-12-17</p></div>
+<div class="post-footer__meta"><p>更新於 2023-12-18</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
@@ -233,30 +197,16 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20231218/1392055196/" class="nav__link">
-                    <div>
-                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
-                    </div>
-                    <div>
-                        <div class="nav__label">
-                            上一篇
-                        </div>
-                        <div class="nav__title">
-                            #55 DOM：標籤屬性
-                        </div>
-                    </div>
-                </a>
-            
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20231216/434066502/" class="nav__link">
+                <a href="/javascript/20231217/3149519580/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #53 DOM：文字節點
+                            #54 DOM：innerHTML
                         </div>
                     </div>
                     <div>
