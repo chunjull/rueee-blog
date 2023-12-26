@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#58 BOM：history | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="history 搭配 SPA 的應用，可以提升使用者體驗並保障安全性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#58 BOM：history">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231221/520630088/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="history 搭配 SPA 的應用，可以提升使用者體驗並保障安全性。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-12-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-26T08:46:27.528Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #58 BOM：history
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/12/" class="post-meta__date button">2023-12-21</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">2 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p><code>history</code> 搭配 SPA 的應用，可以提升使用者體驗並保障安全性。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p> <code>window.history</code> 會記錄使用者在目前瀏覽器視窗上顯示過的頁面，且會把曾經瀏覽過的頁面 URL 放在 <code>history</code> 物件當中。<br>此外，由於隱私考量，BOM 不允許 JS 讀取清單上的詳細網址，所以我們只能取得 <code>history</code> 的 <code>length</code> 屬性，進而得知當下這個瀏覽器曾經切換過幾次頁面。</p>
+<h3 id="相關語法"><a href="#相關語法" class="headerlink" title="相關語法"></a>相關語法</h3><p>除了 <code>length</code> 屬性外， <code>history</code> 物件還提供 <code>back()</code> 、 <code>forward()</code> 及 <code>go()</code> 這三種方法，讓 JS 可以控制網頁的歷史紀錄。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">history.<span class="title function_">back</span>();</span><br><span class="line"><span class="comment">// 等同於瀏覽器的「上一頁」</span></span><br><span class="line">history.<span class="title function_">forward</span>();</span><br><span class="line"><span class="comment">// 等同於瀏覽器的「下一頁」</span></span><br><span class="line">history.<span class="title function_">go</span>(-<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 等同於瀏覽器的「上一頁」，也就是 history.back()</span></span><br><span class="line">history.<span class="title function_">go</span>(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 等同於瀏覽器的「上一頁」，也就是 history.forward()</span></span><br></pre></td></tr></table></figure>
+<h3 id="SPA-與錨點"><a href="#SPA-與錨點" class="headerlink" title="SPA 與錨點"></a>SPA 與錨點</h3><p>當今流行的前端趨勢——SPA（Single Page application，單頁式應用），是一種「在單一頁面上動態更新目前頁面內容」的程式模型。<br>過去，會透過操作 <code>hash</code> 的方式，讓使用者在切換上、下頁的同時瀏覽器不換頁更新。當使用者點擊錨點時，瀏覽器會在 <code>history</code> 增加一筆新紀錄，且不離開目前頁面。<br>此做法的缺點是：網站永遠只有單一網址，且 <code>hash</code> 紀錄可能會大到難以維護。</p>
+<h3 id="SPA-與-pushState"><a href="#SPA-與-pushState" class="headerlink" title="SPA 與 pushState"></a>SPA 與 pushState</h3><p>在 HTML5 的規範中， <code>history</code> 物件新增了 <code>pushState()</code> 用法，可以將狀態與網址同時存入到 <code>history</code> 物件紀錄中，並在使用者切換上、下頁時，將已儲存的狀態還原至頁面中，如此達到在單一頁面中無縫切換的良好體驗。<br> <code>pushState()</code> 語法為： <code>pushState(state, unused, url);</code> ，第一個參數為儲存的物件；第二個參數代表新頁面的標題；第三個參數則是新頁面的網址。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> state = &#123;</span><br><span class="line">	<span class="attr">pageName</span>: <span class="string">&quot;profile&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">pushState</span>(state, <span class="string">&quot;My Profile&quot;</span>, <span class="string">&quot;/profile&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>呼叫 <code>history.pushState()</code> 方法後，瀏覽器會在 <code>history</code> 物件新增一筆紀錄，且儲存當下的 <code>state</code> 。<br>為了安全性考量，防止有心人利用網址替換來進行詐騙， <code>pushState()</code> 第三個參數的網址內容，只能限定在相同網域下或是使用相對網址。</p>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>由於無法取得 URL 的完整歷史清單，所以在實務上 <code>history.go()</code> 不如 <code>back()</code> 或 <code>forward()</code> 實用，因為開發者無法掌握使用者最終會被 <code>history</code> 導致哪一頁。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History">MDN－history</a>：了解 <code>history</code> 的概念。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/History/pushState">MDN－pushState</a>：了解 <code>pushState()</code> 的使用方式。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Glossary/SPA">MDN－SPA</a>：了解單頁式應用的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/schaoss-blog/%E5%89%8D%E7%AB%AF%E4%B8%89%E5%8D%81-18-fe-%E7%82%BA%E4%BB%80%E9%BA%BC%E7%B6%B2%E7%AB%99%E8%A6%81%E5%81%9A%E6%88%90-spa-ssr-%E7%9A%84%E5%84%AA%E9%BB%9E%E6%98%AF%E4%BB%80%E9%BA%BC-c926145078a4">Schaos－為什麼網站要做成 SPA？SSR 的優點是什麼？</a>：學習 SPA 的功能與發展。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2023-12-26</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/javascript/20231222/2707769710/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #59 事件機制的原理
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20231220/1229262100/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #57 BOM：location
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2023 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
