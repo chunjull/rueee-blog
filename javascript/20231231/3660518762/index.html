@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#68 滑鼠相關事件 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="滑鼠相關事件觀念不難，卻非常重要，是常見面試考題。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#68 滑鼠相關事件">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20231231/3660518762/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="滑鼠相關事件觀念不難，卻非常重要，是常見面試考題。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2023-12-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-02T09:17:15.821Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #68 滑鼠相關事件
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2023/12/" class="post-meta__date button">2023-12-31</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">2 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>滑鼠相關事件觀念不難，卻非常重要，是常見面試考題。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>以下為幾種常見的滑鼠相關事件：</p>
+<ul>
+<li><code>mousedown</code> &#x2F; <code>mouseup</code> 事件：此二事件分別會在滑鼠點擊某元素「按下」（mousedown）按鈕，及「放開」（mouseup）按鈕時觸發。</li>
+<li><code>click</code> 事件：當滑鼠「點擊」某元素時觸發。</li>
+<li><code>dbclick</code> 事件：當滑鼠「連點兩次」某元素時觸發。</li>
+<li><code>mouseenter</code> &#x2F; <code>mousemove</code> &#x2F; <code>mouseleave</code> &#x2F; <code>mouseover</code> 事件：這幾個事件要放在一起看<ol>
+<li>當滑鼠游標移入某元素時，會先觸發 <code>mouseenter</code> &#x2F; <code>mouseover</code> 事件。</li>
+<li>滑鼠游標在這個元素內「移動」時，會連續觸發 <code>mousemove</code> 事件。</li>
+<li>直到滑鼠游標離開該元素，才觸發 <code>mouseleave</code> 事件。</li>
+</ol>
+</li>
+</ul>
+<h3 id="mouseenter-v-s-mouseover"><a href="#mouseenter-v-s-mouseover" class="headerlink" title="mouseenter v.s. mouseover"></a>mouseenter v.s. mouseover</h3><p> <code>mouseenter</code> &#x2F; <code>mouseover</code> 事件雖然都是滑鼠游標移入了某元素時觸發，但兩者最大的不同之處，在於支援事件冒泡與否，以及觸發時間的不同。<br>首先，說明兩者冒泡與否的差異。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;outer&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;inner&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先看看為 <code>inner</code> 與 <code>outer</code> 註冊 <code>mouseenter</code> 事件的回傳結果：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> outer = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.outer&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> inner = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.inner&quot;</span>);</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&quot;mouseenter&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;outer&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">inner.<span class="title function_">addEventListener</span>(<span class="string">&quot;mouseenter&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;inner&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;outer&quot;</span></span><br><span class="line"><span class="comment">// &quot;inner&quot;</span></span><br></pre></td></tr></table></figure>
+<p>再看看註冊 <code>mouseover</code> 事件的回傳結果：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> outer = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.outer&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> inner = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.inner&quot;</span>);</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&quot;mouseover&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;outer&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">inner.<span class="title function_">addEventListener</span>(<span class="string">&quot;mouseover&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;inner&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;outer&quot;</span></span><br><span class="line"><span class="comment">// &quot;inner&quot;</span></span><br><span class="line"><span class="comment">// &quot;outer&quot;</span></span><br></pre></td></tr></table></figure>
+<p> <code>mouseover</code> 事件與 <code>mouseenter</code> 的差異在於： <code>mouseover</code> 會將事件冒泡至上層元素當中。換句話說，當 <code>inner</code> 的 <code>mouseover</code> 事件被觸發了，它同時也會將事件傳遞一份到上層元素中，即 <code>outer</code> ，因此 console 會再次印出 <code>&quot;outer&quot;</code> 。<br>接著，說明兩者觸發時間的差異。<br>在下面案例中，同時為 <code>outer</code> 註冊 <code>mouseenter</code> 與 <code>mouseover</code> 事件：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> outer = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.outer&quot;</span>);</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&quot;mouseenter&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;outer - mouseenter&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">outer.<span class="title function_">addEventListener</span>(<span class="string">&quot;mouseover&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;outer - mouseover&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;outer - mouseover&quot;</span></span><br><span class="line"><span class="comment">// &quot;outer - mouseenter&quot;</span></span><br></pre></td></tr></table></figure>
+<p>由此可以觀察到 <code>mouseover</code> 的觸發時機早於 <code>mouseenter</code> 。</p>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>與 <code>mouseleave</code> 事件相對應的還有 <code>mouseout</code> 事件，前者無事件冒泡；後者有事件冒泡。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192175">Kuro－那些你知道與不知道的事件們</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@shizukuichi/mouse-event-%E5%B0%8F%E7%AD%86%E8%A8%98-feb5dd866b0">sh1zuku－Mouse Event 小筆記</a>：了解更多滑鼠相關事件。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2024-01-02</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/javascript/20240101/2442920394/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #69 鍵盤相關事件
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20231230/4272355166/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #67 網頁介面相關事件
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
