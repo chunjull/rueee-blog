@@ -33,22 +33,27 @@
     <!-- meta -->
 
 
-<title>JubyDoWhat</title>
+<title>#73 事件物件 | JubyDoWhat</title>
 
+
+    <meta name="keywords" content="JavaScript">
 
 
 
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Juby Do What">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JubyDoWhat">
-<meta property="og:url" content="https://chunjull.github.io/page/8/index.html">
+    <meta name="description" content="瀏覽器會主動將「事件物件」的資料傳入事件處理器。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#73 事件物件">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240105/2862496385/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="Juby Do What">
+<meta property="og:description" content="瀏覽器會主動將「事件物件」的資料傳入事件處理器。">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-01-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-05T06:12:41.916Z">
 <meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
 
 
@@ -57,6 +62,13 @@
  
 
     
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
     
     
 
@@ -129,133 +141,92 @@
 </header>
 
 
-    
-
             <main class="main">
     
-    <div class="post-list">
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #73 事件物件
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-05</a>
         
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header"></div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        #3 變數
-    </h2>
     
-        <p>變數是儲存資料的容器，可以幫助我們紀錄、使用資訊。</p>
     
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/10/" class="post-meta__date button">2023-10-27</a>
-    <span class="separate-dot"></span><span class="post-count">1 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
 
  
-</div>
-<div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
-<a href="/javascript/20231027/1250803838/" class="post-entry__link">#3 變數</a>
-                </div>
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header"></div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        #2 JS 發展簡史
-    </h2>
-    
-        <p>JavaScript 如何從「網路特效工具箱」發展成網頁設計中不可或缺的一部份？</p>
-    
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/10/" class="post-meta__date button">2023-10-26</a>
-    <span class="separate-dot"></span><span class="post-count">1 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
 
  
-</div>
-<div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
-<a href="/javascript/20231026/1784042972/" class="post-entry__link">#2 JS 發展簡史</a>
-                </div>
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header"></div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        #1 JS 是什麼？
-    </h2>
-    
-        <p>JavaScript 不是魔法，而是一種實現多樣化功能的程式語言。</p>
-    
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/10/" class="post-meta__date button">2023-10-25</a>
-    <span class="separate-dot"></span><span class="post-count">1 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
-
- 
-</div>
-<div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
-<a href="/javascript/20231025/1925797630/" class="post-entry__link">#1 JS 是什麼？</a>
-                </div>
-            
-                <div class='post-entry content-card'>
-                    <div class="post-entry__header">
-     
-     
-    
-        <div class="post-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&amp;fit=crop&amp;q=80&amp;w=2946&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
-    
-</div>
-<div class="post-entry__content">
-    <h2 class="post-entry__title">
-        ⚡️ 最聰明的高效能溝通法
-    </h2>
-    
-        <p>我們平均花 26 秒閱讀一篇內容，卻仍用 80 年代的舊方式溝通。</p>
-    
-</div>
-<div class="post-entry__meta">
-    <a href="/archives/2023/10/" class="post-meta__date button">2023-10-24</a>
-    <span class="separate-dot"></span><span class="post-count">1 min read</span>
-    
-    <span class="separate-dot"></span><a href="/categories/read/" class="button">DoRead</a>
-
- 
-</div>
-<div class="post-entry__tags"><a href="/tags/%E9%96%B1%E8%AE%80%E5%BF%83%E5%BE%97/" class="post-tags__link button"># 閱讀心得</a></div> 
-<a href="/read/20231024/861377249/" class="post-entry__link">⚡️ 最聰明的高效能溝通法</a>
-                </div>
-            
+        ・ <span class="post-count">1 min read</span>
         
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
     </div>
-    
-        <div class="nav">
-            <div class="nav__prev">
-                
-                    <a href="/page/7/" class="nav__link">
-                        <div>
-                            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
-                        </div>
-                        <div>
-                            <div class="nav__label">
-                                上一頁
-                            </div>
-                            <div class="nav__title">
-                                第 7 頁
-                            </div>
-                        </div>
-                    </a>
-                
-            </div>
-            <div class="nav__next">
-                
-            </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>瀏覽器會主動將「事件物件」的資料傳入事件處理器。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>當監聽事件發生時，瀏覽器會去執行開發者透過 <code>addEventListener()</code> 註冊的 Event Handler（EventListener），即指定的韓式內容。<br>這時，EventListener 會主動建立一個「事件物件」（Event Object），裡面包含所有與該事件有關的屬性，且會以「參數」形式傳給 Event Handler。<br>舉例來說：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span>&gt;</span>Click<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = docuemnt.<span class="title function_">getElementById</span>(<span class="string">&quot;btn&quot;</span>);</span><br><span class="line">btn.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(e)</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p>上述程式碼的參數 <code>e</code> 即為事件物件。<br>點擊 <code>&lt;button&gt;</code> 後，可以從 <code>console</code> 看到 <code>event</code> 物件提供的屬性，例如：</p>
+<ul>
+<li><code>type</code> ：事件名稱。</li>
+<li><code>target</code> ：觸發事件的元素</li>
+<li><code>bubbles</code> ：該事件是否在「冒泡」階段觸發。</li>
+<li><code>pageX</code> &#x2F; <code>pageY</code> ：該事件觸發時，滑鼠座標在網頁的相對位置。</li>
+</ul>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>事件物件是參數，因此可以自定義名義。</li>
+<li>可以透過 Chrome 的 <code>console</code> 主控台觀察到事件物件所提供的屬性們。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192015">Kuro－隱藏在 “事件” 之中的秘密</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/API/Event">MDN－Event</a>：了解更多種事件物件的屬性。</li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6MIZmmV00cg">彭彭－Javascript 事件處理 - Event Object 事件物件</a>：了解事件物件的操作方法。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2024-01-05</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
         </div>
-    
+        <div class="nav__next">
+            
+                <a href="/javascript/20240104/3081470379/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #72 自定義事件
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
 
 
 </main>
