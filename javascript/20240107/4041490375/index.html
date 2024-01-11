@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#72 自定義事件 | JubyDoWhat</title>
+<title>#75 阻擋事件傳遞 | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="除了瀏覽器內建事件外，也可以自行建立事件。">
+    <meta name="description" content="e.stopPropagation() 可以阻擋事件傳遞，不論向上或向下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#72 自定義事件">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20240104/3081470379/index.html">
+<meta property="og:title" content="#75 阻擋事件傳遞">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240107/4041490375/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="除了瀏覽器內建事件外，也可以自行建立事件。">
+<meta property="og:description" content="e.stopPropagation() 可以阻擋事件傳遞，不論向上或向下。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-01-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-05T06:12:46.806Z">
+<meta property="article:published_time" content="2024-01-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-11T06:43:56.717Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -146,10 +146,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #72 自定義事件
+        #75 阻擋事件傳遞
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-04</a>
+        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-07</a>
         
     
     
@@ -158,7 +158,7 @@
  
 
  
-        ・ <span class="post-count">1 min read</span>
+        ・ <span class="post-count">2 min read</span>
         
     <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
 
@@ -171,21 +171,33 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>除了瀏覽器內建事件外，也可以自行建立事件。</p>
+        <p><code>e.stopPropagation()</code> 可以阻擋事件傳遞，不論向上或向下。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>除了瀏覽器提供的標準事件之外，BOM 也提供了讓開發者自行建立事件的方式，此類事件可以用 <code>Event constructor</code> 建立，同樣透過 <code>addEventListener</code> 去監聽，並由 <code>dispatchEvent</code> 來決定觸發的時機。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> <span class="title class_">Event</span>(<span class="string">&quot;build&quot;</span>);</span><br><span class="line"><span class="comment">// 監聽事件</span></span><br><span class="line">element.<span class="title function_">addEventListener</span>(<span class="string">&quot;build&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;...&#125;, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">// 觸發事件</span></span><br><span class="line">element.<span class="title function_">dispatchEvent</span>(event);</span><br></pre></td></tr></table></figure>
-<p>如果像要在自訂事件內增加更多資料，可以改用 <code>CustomEvent</code> ，在 Event Handler 則透過 <code>event</code> 接收：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> event = <span class="keyword">new</span> <span class="title class_">Custom</span>(<span class="string">&quot;build&quot;</span>, &#123;<span class="string">&quot;detail: elem.dataset.time&quot;</span>&#125;);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">eventHandler</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	<span class="title function_">log</span>(<span class="string">&quot;The time is: &quot;</span> + e.<span class="property">detail</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>前面提過， <code>event.preventDefault()</code> 可以阻擋預設事件，但不會阻止事件向上傳遞。<br>如果想要阻擋事件傳遞，可以利用另一個方法： <code>e.stopPropagation()</code> 。<br>當使用 <code>event.stopPropagation()</code>，事件傳遞就會停在設置的地方：</p>
+<ul>
+<li>若在捕獲階段：阻止事件往下傳遞。</li>
+<li>若在冒泡階段：阻止事件向上傳遞。</li>
+</ul>
+<h3 id="阻擋事件冒泡傳遞範例"><a href="#阻擋事件冒泡傳遞範例" class="headerlink" title="阻擋事件冒泡傳遞範例"></a>阻擋事件冒泡傳遞範例</h3><p> <code>e.stopPropagation()</code> 最常見的使用情境是：解決 <code>checkbox</code> 的冒泡問題。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;lbl&quot;</span>&gt;</span></span><br><span class="line">	Label <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;chkbox&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>為了增強 <code>checkbox</code> 的易用性，通常會另外加上 <code>label</code> 標籤在為對應的 <code>checkbox</code> 加上 <code>for</code> 屬性。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lbl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.lbl&quot;</span>);</span><br><span class="line">lbl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;lbl click&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;lbl click&quot;</span></span><br><span class="line"><span class="comment">// &quot;lbl click&quot;</span></span><br></pre></td></tr></table></figure>
+<p>上述程式碼回傳結果是「把 <code>console.log(&quot;lbl click&quot;);</code> 執行兩次」，因為在 <code>label</code> 標籤包覆 <code>checkbox</code> 的情況下，是透過點擊 <code>label</code> 觸發 <code>click</code> 事件，所以瀏覽器會自動把這個 <code>click</code> 事件傳給 <code>checkbox</code> 。<br>而 <code>checkbox</code> 受事件冒泡影響，會再度把 <code>click</code> 事件傳遞至 <code>label</code> 上，導致 <code>&quot;lbl click&quot;</code> 出現兩次。<br>已知 <code>checkbox</code> 受事件冒泡影響而將事件向上傳遞，如果想要修正 <code>label</code> 的 <code>click</code> 事件觸發兩次的錯誤，可以在 <code>checkbox</code> 的 <code>click</code> 事件加上 <code>e.stopPropagation()</code> 。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// label</span></span><br><span class="line"><span class="keyword">var</span> lbl = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.lbl&quot;</span>);</span><br><span class="line"><span class="comment">// chkbox</span></span><br><span class="line"><span class="keyword">var</span> chkbox = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;#chkbox&quot;</span>);</span><br><span class="line">lbl.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;lbl click&quot;</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">chkbox.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>除了 <code>e.stopPropagation()</code> ，還有一種阻擋事件傳遞的方法： <code>e.stopImmediatePropagation()</code> ，其可以阻擋同層的其他事件運作。</li>
+<li>在最上層 <code>window</code> 的捕獲階段設定 <code>e.stopPropagation()</code> ，會阻止後續事件傳遞，造成所有好相關事件都失效。</li>
+</ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192175">Kuro－那些你知道與不知道的事件們</a>：本文最主要的參考範例。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/Events">MDN－Event reference</a>：參考更多事件。</li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192015">Kuro－隱藏在 “事件” 之中的秘密</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/API/Event/stopPropagation">MDN－stopPropagation</a>：了解 <code>e.stopPropagation</code> 的使用方式。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/API/Event/stopImmediatePropagation">MDN－stopImmediatePropagation</a>：了解 <code>e.stopImmediatePropagation</code> 的使用方式。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2024-01-05</p></div>
+<div class="post-footer__meta"><p>更新於 2024-01-11</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
@@ -194,7 +206,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20240105/2862496385/" class="nav__link">
+                <a href="/javascript/20240108/3886780583/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -203,7 +215,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #73 事件物件
+                            #76 事件指派
                         </div>
                     </div>
                 </a>
@@ -211,13 +223,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20240103/4271922278/" class="nav__link">
+                <a href="/javascript/20240106/1726339634/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #71 特殊事件
+                            #74 阻擋預設行為
                         </div>
                     </div>
                     <div>

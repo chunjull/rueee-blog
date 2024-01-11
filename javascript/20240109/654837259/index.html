@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#72 自定義事件 | JubyDoWhat</title>
+<title>#77 HTTP | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="除了瀏覽器內建事件外，也可以自行建立事件。">
+    <meta name="description" content="HTTP 是一種使「瀏覽器和伺服器進行溝通」的網路協定。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#72 自定義事件">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20240104/3081470379/index.html">
+<meta property="og:title" content="#77 HTTP">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240109/654837259/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="除了瀏覽器內建事件外，也可以自行建立事件。">
+<meta property="og:description" content="HTTP 是一種使「瀏覽器和伺服器進行溝通」的網路協定。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-01-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-05T06:12:46.806Z">
+<meta property="article:published_time" content="2024-01-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-11T06:46:15.627Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -146,10 +146,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #72 自定義事件
+        #77 HTTP
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-04</a>
+        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-09</a>
         
     
     
@@ -171,21 +171,29 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>除了瀏覽器內建事件外，也可以自行建立事件。</p>
+        <p>HTTP 是一種使「瀏覽器和伺服器進行溝通」的網路協定。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>除了瀏覽器提供的標準事件之外，BOM 也提供了讓開發者自行建立事件的方式，此類事件可以用 <code>Event constructor</code> 建立，同樣透過 <code>addEventListener</code> 去監聽，並由 <code>dispatchEvent</code> 來決定觸發的時機。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> <span class="title class_">Event</span>(<span class="string">&quot;build&quot;</span>);</span><br><span class="line"><span class="comment">// 監聽事件</span></span><br><span class="line">element.<span class="title function_">addEventListener</span>(<span class="string">&quot;build&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;...&#125;, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">// 觸發事件</span></span><br><span class="line">element.<span class="title function_">dispatchEvent</span>(event);</span><br></pre></td></tr></table></figure>
-<p>如果像要在自訂事件內增加更多資料，可以改用 <code>CustomEvent</code> ，在 Event Handler 則透過 <code>event</code> 接收：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> event = <span class="keyword">new</span> <span class="title class_">Custom</span>(<span class="string">&quot;build&quot;</span>, &#123;<span class="string">&quot;detail: elem.dataset.time&quot;</span>&#125;);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">eventHandler</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	<span class="title function_">log</span>(<span class="string">&quot;The time is: &quot;</span> + e.<span class="property">detail</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>HTTP（HyperText Transfer Protocol）是一種網路通訊協定，被譯為「超文本傳輸協定」。<br>HTTP 是專門用於瀏覽器與伺服器之間的通訊協定，是全球資訊網的數據通訊基礎。</p>
+<h3 id="HTTP-架構"><a href="#HTTP-架構" class="headerlink" title="HTTP 架構"></a>HTTP 架構</h3><p>HTTP 是一個「用戶端－伺服器端」協定，在協定的兩端分別是用戶端（Client）與伺服器端（Server）。<br>網頁上的資訊，由許多用戶端與伺服器端之間的 request 跟 response 構成。<br>網頁介面呈現過程：</p>
+<ol>
+<li>用戶端的瀏覽器傳送 HTTP request 給伺服器端。</li>
+<li>伺服器處理過後，再回傳 response 給瀏覽器。</li>
+<li>最後由瀏覽器進行 HTML、CSS、JS 解析，並由程式碼渲染成網頁介面。</li>
+</ol>
+<h3 id="HTTP-格式"><a href="#HTTP-格式" class="headerlink" title="HTTP 格式"></a>HTTP 格式</h3><p>伺服器端和用戶端進行請求與回應時，會使用定義明確的請求格式 (request format) 和回應格式 (response format)。<br>請求格式是 HTTP 的請求方法，用戶端需要使用特定的 HTTP 請求方法，向 URL 發出請求。例如： <code>GET</code> 、 <code>HEAD</code> 、 <code>POST</code> 。<br>回應格式則是指伺服器端回應時採用的資料格式，例如：XML、JSON。</p>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>協定（Protocol）制定了規則和標準，讓設備之間不但能認出彼此，也能夠根據不同情境選擇溝通的方式。</li>
+</ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192175">Kuro－那些你知道與不知道的事件們</a>：本文最主要的參考範例。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/Events">MDN－Event reference</a>：參考更多事件。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP">MDN－HTTP</a>：了解 HTTP 的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/tw/compare/the-difference-between-https-and-http/">AWS－HTTP 與 HTTPS 之間有什麼區別？</a>：延伸了解 HTTP 與 HTTPS 的差異。</li>
+<li><a target="_blank" rel="noopener" href="https://tw.alphacamp.co/blog/api-introduction-understand-web-api-http-json">ALPHAcamp－認識 API 與 Web API ，實用的 API 工具</a>：了解 HTTP 結構與預習 API 內容。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2024-01-05</p></div>
+<div class="post-footer__meta"><p>更新於 2024-01-11</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
@@ -194,7 +202,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20240105/2862496385/" class="nav__link">
+                <a href="/javascript/20240110/842599140/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -203,7 +211,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #73 事件物件
+                            #78 HTTP 請求方法
                         </div>
                     </div>
                 </a>
@@ -211,13 +219,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20240103/4271922278/" class="nav__link">
+                <a href="/javascript/20240108/3886780583/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #71 特殊事件
+                            #76 事件指派
                         </div>
                     </div>
                     <div>

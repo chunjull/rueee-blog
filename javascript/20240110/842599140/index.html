@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#72 自定義事件 | JubyDoWhat</title>
+<title>#78 HTTP 請求方法 | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="除了瀏覽器內建事件外，也可以自行建立事件。">
+    <meta name="description" content="用戶端會依據 HTTP 請求方法向伺服器端溝通。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#72 自定義事件">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20240104/3081470379/index.html">
+<meta property="og:title" content="#78 HTTP 請求方法">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240110/842599140/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="除了瀏覽器內建事件外，也可以自行建立事件。">
+<meta property="og:description" content="用戶端會依據 HTTP 請求方法向伺服器端溝通。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-01-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-05T06:12:46.806Z">
+<meta property="article:published_time" content="2024-01-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-11T06:48:00.031Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -146,10 +146,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #72 自定義事件
+        #78 HTTP 請求方法
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-04</a>
+        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-10</a>
         
     
     
@@ -171,21 +171,111 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>除了瀏覽器內建事件外，也可以自行建立事件。</p>
+        <p>用戶端會依據 HTTP 請求方法向伺服器端溝通。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>除了瀏覽器提供的標準事件之外，BOM 也提供了讓開發者自行建立事件的方式，此類事件可以用 <code>Event constructor</code> 建立，同樣透過 <code>addEventListener</code> 去監聽，並由 <code>dispatchEvent</code> 來決定觸發的時機。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> <span class="title class_">Event</span>(<span class="string">&quot;build&quot;</span>);</span><br><span class="line"><span class="comment">// 監聽事件</span></span><br><span class="line">element.<span class="title function_">addEventListener</span>(<span class="string">&quot;build&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)&#123;...&#125;, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">// 觸發事件</span></span><br><span class="line">element.<span class="title function_">dispatchEvent</span>(event);</span><br></pre></td></tr></table></figure>
-<p>如果像要在自訂事件內增加更多資料，可以改用 <code>CustomEvent</code> ，在 Event Handler 則透過 <code>event</code> 接收：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> event = <span class="keyword">new</span> <span class="title class_">Custom</span>(<span class="string">&quot;build&quot;</span>, &#123;<span class="string">&quot;detail: elem.dataset.time&quot;</span>&#125;);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">eventHandler</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	<span class="title function_">log</span>(<span class="string">&quot;The time is: &quot;</span> + e.<span class="property">detail</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>HTTP 定義了一組能以不同方式操作指定資源的請求方法（request methods），讓伺服器端能夠清楚辨識 request 的目的。</p>
+<h3 id="HTTP-請求方法"><a href="#HTTP-請求方法" class="headerlink" title="HTTP 請求方法"></a>HTTP 請求方法</h3><p>HTTP 總共有九種請求方法：</p>
+<table>
+<thead>
+<tr>
+<th>請求方法</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>只應用於取得資料。</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>與 GET 方法相同的回應，但只獲取回應的 header，而沒有 body。</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>用於提交指定資源的實體，通常會改變伺服器的狀態。</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>取代原本的整個 request。和 PATCH 類似。</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>刪除指定資源。</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>會和指定資源標明的伺服器之間，建立隧道（tunnel）。</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>會回傳指定資源其支援哪些請求方法。</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>會與指定資源標明的伺服器之間，執行迴路返回測試（loop-back test）。</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>修改指定資源的部分 request。</td>
+</tr>
+</tbody></table>
+<h3 id="CRUD-原則"><a href="#CRUD-原則" class="headerlink" title="CRUD 原則"></a>CRUD 原則</h3><p>常用的幾個動作分別為： <code>GET</code> &#x2F; <code>POST</code> &#x2F; <code>PUT</code> &#x2F; <code>DELETE</code>，正好對應到資料庫基本操作：CRUD 增刪查改：</p>
+<table>
+<thead>
+<tr>
+<th>請求方法</th>
+<th>操作方式</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST</td>
+<td>Create</td>
+<td>新增、建立。</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>Read</td>
+<td>查詢、讀取。</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>Update</td>
+<td>更新。</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Delete</td>
+<td>刪除。</td>
+</tr>
+</tbody></table>
+<h3 id="GET-POST-請求的區別"><a href="#GET-POST-請求的區別" class="headerlink" title="GET &amp; POST 請求的區別"></a>GET &amp; POST 請求的區別</h3><p> <code>GET</code> 和 <code>POST</code> 兩種是最常使用的 HTTP 請求方法，兩者最直觀的區別是「資料傳遞方式」與「安全性」。</p>
+<ul>
+<li><code>GET</code> ：向指定的資源要求資料，類似於查詢操作。<ul>
+<li>資料傳遞方式：將引數由 URL 帶至伺服器端。</li>
+<li>安全性：較 <code>POST</code> 不安全，因為傳遞的引數會在 URL 上顯示。</li>
+<li>例如：讀取連結或圖片。</li>
+</ul>
+</li>
+<li><code>POST</code> ：將要處理的資料提交給指定的資源，類似於更新操作。<ul>
+<li>資料傳遞方式：將引數放在 request body 中傳遞。</li>
+<li>安全性：較 <code>GET</code> 安全，適合用於隱密性較高的資料。</li>
+<li>例如：會員登入系統。</li>
+</ul>
+</li>
+</ul>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li><code>HEAD</code> 較少使用，通常應用在只想知道 response 資訊時。</li>
+</ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192175">Kuro－那些你知道與不知道的事件們</a>：本文最主要的參考範例。</li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/Events">MDN－Event reference</a>：參考更多事件。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Methods">MDN－HTTP 請求方法</a>：了解 HTTP 請求方法。</li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%A2%9E%E5%88%AA%E6%9F%A5%E6%94%B9">維基百科－增刪查改</a>：了解 CRUD 的意義。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2024-01-05</p></div>
+<div class="post-footer__meta"><p>更新於 2024-01-11</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
@@ -194,7 +284,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20240105/2862496385/" class="nav__link">
+                <a href="/javascript/20240111/284833906/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -203,7 +293,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #73 事件物件
+                            #79  HTTP 狀態碼
                         </div>
                     </div>
                 </a>
@@ -211,13 +301,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20240103/4271922278/" class="nav__link">
+                <a href="/javascript/20240109/654837259/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #71 特殊事件
+                            #77 HTTP
                         </div>
                     </div>
                     <div>
