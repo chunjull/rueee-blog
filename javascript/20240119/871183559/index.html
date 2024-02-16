@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#84 Ajax：同步與非同步 | JubyDoWhat</title>
+<title>#87 陣列處理方法：forEach | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="同步的 JS 一次只能做一件事；非同步的 JS 則可以在同時做多件事。">
+    <meta name="description" content="forEach 可達成多種目標，適合在「處理大筆資料」時使用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#84 Ajax：同步與非同步">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20240116/3831438034/index.html">
+<meta property="og:title" content="#87 陣列處理方法：forEach">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240119/871183559/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="同步的 JS 一次只能做一件事；非同步的 JS 則可以在同時做多件事。">
+<meta property="og:description" content="forEach 可達成多種目標，適合在「處理大筆資料」時使用。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-01-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-17T07:20:56.833Z">
+<meta property="article:published_time" content="2024-01-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-15T03:20:31.031Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -146,10 +146,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #84 Ajax：同步與非同步
+        #87 陣列處理方法：forEach
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-16</a>
+        <a href="/archives/2024/01/" class="post-meta__date button">2024-01-19</a>
         
     
     
@@ -171,19 +171,25 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>同步的 JS 一次只能做一件事；非同步的 JS 則可以在同時做多件事。</p>
+        <p><code>forEach</code> 可達成多種目標，適合在「處理大筆資料」時使用。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>在了解「非同步」的概念前，先解釋什麼是「同步 JS」。</p>
-<h3 id="同步的-JS"><a href="#同步的-JS" class="headerlink" title="同步的 JS"></a>同步的 JS</h3><p>同步 JS（Synchronous JavaScript）指：用戶端對伺服器端送出 request ，且在收到伺服器端的 response 之後才會繼續下一步的動作，伺服器端在同一時間只能做一件事件，等待的期間無法處理其他事情。簡單來說，同步的 JS 是「一次只做一件事」。<br>若程式都是同步執行的話，會導致網頁的阻塞（Blocking）現象，使得網頁看似當掉、沒有回應，實際上是因為上一件事還沒有完成，所以下一件事情等著尚未執行。</p>
-<h3 id="非同步的-JS"><a href="#非同步的-JS" class="headerlink" title="非同步的 JS"></a>非同步的 JS</h3><p>非同步 JS（Asynchronous JavaScript）則是指：用戶端向伺服器端送出 request 之後，不需要等待結果，仍可以持續處理其他事情，甚至繼續送出其他 request。Response 回傳後，就被融合進當下頁面或應用中。簡單來說，非同步 JS 是「同時可以做很多件事情」。<br>非同步 JS 有兩種回呼方式：較舊的 callback function 與較新的 <code>promise</code> 。如今，callback 已較少被使用。</p>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>處理大筆資料時，使用陣列處理方法能夠有效提升工作效率。<br>例如： <code>forEach</code> 可以取代 <code>for</code> 迴圈、計算陣列數字累加、讀取字串或物件等不同型別的資料，還可以搭配 <code>if</code> 條件判斷使用。</p>
+<h3 id="forEach-結構"><a href="#forEach-結構" class="headerlink" title="forEach 結構"></a>forEach 結構</h3><p>forEach 的函式結構為 <code>function(item, index, array)</code> ，第一個參數是「當前元素的值」、第二個參數是「當前元素是陣列第幾筆資料」、第三個參數是「當前元素的資料」。<br>特別注意！ <code>forEach</code> 不會回傳值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = [<span class="number">10</span>, <span class="number">20</span>];</span><br><span class="line">data.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item, index, array</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(item, index, array);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 10 0 (2)[10, 20]</span></span><br><span class="line"><span class="comment">// 20 1 (2)[10, 20]</span></span><br></pre></td></tr></table></figure>
+<h3 id="範例：forEach-與-for-迴圈"><a href="#範例：forEach-與-for-迴圈" class="headerlink" title="範例：forEach 與 for 迴圈"></a>範例：forEach 與 for 迴圈</h3><p>當有一個陣列的內容需要依序取值時，通常會使用 <code>for</code> 迴圈的方式，將值一一取出。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.<span class="property">length</span>; i++)&#123;</span><br><span class="line">	<span class="keyword">const</span> item = data[i];</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(i, item)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 0 10</span></span><br><span class="line"><span class="comment">// 1 20</span></span><br><span class="line"><span class="comment">// 2 30</span></span><br><span class="line"><span class="comment">// 3 40</span></span><br></pre></td></tr></table></figure>
+<p>學會 <code>forEach</code> 後，可以透過更簡潔的程式碼做到一樣的效果。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];</span><br><span class="line">data.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item, index, array</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(index, item);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 0 10</span></span><br><span class="line"><span class="comment">// 1 20</span></span><br><span class="line"><span class="comment">// 2 30</span></span><br><span class="line"><span class="comment">// 3 40</span></span><br></pre></td></tr></table></figure>
+<p>必須注意的是， <code>forEach</code> 並沒有像 <code>for</code> 迴圈一樣的中斷方式，故無法被中途停止運行。</p>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Asynchronous/Introducing">MDN－非同步的 JS</a>：了解 JS 同步與非同步的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">MDN－forEach</a>：了解 <code>forEach</code> 的使用方式。</li>
+<li><a target="_blank" rel="noopener" href="https://www.casper.tw/development/2020/10/05/js-for-loop-vs-for-each/">卡斯柏－for 迴圈與 forEach 有什麼不同</a>：比較 <code>for</code> 和 <code>forEach</code> 的差異。</li>
 </ul>
 
     </div>
      
     <!--
-<div class="post-footer__meta"><p>更新於 2024-01-17</p></div>
+<div class="post-footer__meta"><p>更新於 2024-02-15</p></div>
 --> 
     <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
 </article>
@@ -192,7 +198,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20240117/2744536984/" class="nav__link">
+                <a href="/javascript/20240120/1550320910/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -201,7 +207,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #85 Ajax：處理方式
+                            #88 陣列處理方法：map、filter、find、findIndex
                         </div>
                     </div>
                 </a>
@@ -209,13 +215,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20240115/2393430440/" class="nav__link">
+                <a href="/javascript/20240118/2717124241/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #83 Ajax
+                            #86 axios
                         </div>
                     </div>
                     <div>
