@@ -51,7 +51,7 @@
 <meta property="og:description" content="立即函式（IIFE）的目的：減少全域變數產生，並避免變數名稱衝突。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2024-05-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-16T08:19:20.738Z">
+<meta property="article:modified_time" content="2024-06-16T08:21:41.601Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -180,8 +180,9 @@
 <ol>
 <li>先使用小括號 <code>()</code> 將這個函式包起來。</li>
 <li>並在最後方再加一個小括號 <code>()</code> ，使我們可以呼叫它。</li>
-<li>如果該函式只需要在宣告的當下執行，之後不會再呼叫，則可以省去函式命名。<br>如此，由上述步驟得到的立即函式會是下面這個樣子：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params">i</span>)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
+<li>如果該函式只需要在宣告的當下執行，之後不會再呼叫，則可以省去函式命名。<br>如此，由上述步驟得到的立即函式會是下面這個樣子：</li>
 </ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params">i</span>)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 <h3 id="立即函式特性"><a href="#立即函式特性" class="headerlink" title="立即函式特性"></a>立即函式特性</h3><p>立即函式具有以下幾種特性：</p>
 <ol>
 <li>是「具名函式」，也是可以自我執行的「匿名函式」。<br>  立即函式會透過具名函式——即「函式表達式」——來執行，無法在「立即函式的範圍外層」被呼叫。同時，立即函式也可以是不具名的匿名函式，並能夠自我執行。</li>
@@ -221,6 +222,20 @@
 
     <div class="nav">
         <div class="nav__prev">
+            
+                <a href="/uncategorized/20240510/1163736102/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #98 Promise
+                        </div>
+                    </div>
+                </a>
             
         </div>
         <div class="nav__next">
