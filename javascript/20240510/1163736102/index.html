@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#98 Promise | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Promise 物件表示一個「或已實現、或以拒絕」的函式結果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#98 Promise">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240510/1163736102/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="Promise 物件表示一個「或已實現、或以拒絕」的函式結果。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-05-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-16T08:57:03.434Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #98 Promise
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/05/" class="post-meta__date button">2024-05-10</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">2 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p><code>Promise</code> 物件表示一個「或已實現、或以拒絕」的函式結果。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>ES6 新增了一種名為 <code>Promise</code> 的特殊物件，使用目的為：表示非同步運算的最終結果是成功或失敗。<br>換句話說， <code>Promise</code> 的任務是確保「非同步函式的結果」可以用已被預期的方式處理：要不是被履行（resolve），就是被拒絕（reject）。</p>
+<h3 id="Promise-結構"><a href="#Promise-結構" class="headerlink" title="Promise 結構"></a>Promise 結構</h3><p>透過新增一個 <code>Promise</code> 物件，搭配箭頭函式的方式，可以展示成功或失敗的最終結果。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstPromise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="title function_">resolve</span>(someValue); <span class="comment">// 完成</span></span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">&quot;failure reason&quot;</span>); <span class="comment">// 拒絕</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>另外，如果要提供一個函式 <code>Promise</code> 功能，可以透過讓它回傳一個 <code>Promise</code> 物件來達成：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myAsyncFunction</span>(<span class="params">url</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">// resolve() or reject()</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>當 <code>Promise</code> 被完成時，可以呼叫 <code>resolve()</code> ，再將取得的資料傳遞出去；當拒絕 <code>Promise</code> 時，則呼叫 <code>reject()</code> 來拒絕。</p>
+<h3 id="Promise-狀態"><a href="#Promise-狀態" class="headerlink" title="Promise 狀態"></a>Promise 狀態</h3><p>pending, fulfilled, rejected, <code>.then()</code><br>一般來說， <code>Promise</code> 物件有以下三種狀態：</p>
+<ul>
+<li>pending：初始狀態，不是 <code>fulfilled</code> 或 <code>rejected</code> 。</li>
+<li>fulfilled：表示操作成功完成。</li>
+<li>rejected：表示操作失敗。</li>
+</ul>
+<p>此外，還可以透過 <code>.then()</code> 依序串連執行多個 <code>Promise</code> 功能。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">&quot;Success!&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p1.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// Success!</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(reason); <span class="comment">// Error!</span></span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="Promise-方法"><a href="#Promise-方法" class="headerlink" title="Promise 方法"></a>Promise 方法</h3><p> <code>Promise</code> 有兩種較常見的處理方法： <code>Promise.all</code> 與 <code>Promise.race</code> 。</p>
+<ul>
+<li><code>Promise.all</code> 的功能為：直到目標函式都回覆 <code>resolve</code> 才會繼續後續行為。然而，當執行過程中，只要有任何一個 <code>Promise</code> 物件發生錯誤例外，或是有 <code>Promise</code> 發生 <code>reject</code> 情況，就會立即回傳一個 <code>rejected</code> 狀態的 <code>Promise</code> 物件。此方法不在乎目標函式的先後順序，只關心其是否都已經完成。</li>
+<li><code>Promise.race</code> 的功能為：只要有其中一個目標函式被 <code>resolve</code> ，就會執行下一步驟。雖然，只要有一個函式完成任務，就會進行後續行為，但這不表示「其他未完成的函式會取消任務」，這些函式仍然會被執行。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10194569">Kuro－同步與非同步</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Using_promises">MDN－使用 Promise</a>：了解如何使用 <code>Promise</code> 。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN－Promise</a>：了解更多的 <code>Promise</code> 使用規則。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise/all">MDN－Promise.all</a>：了解 <code>Promise.all</code> 的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise/race">MDN－Promise.race</a>：了解 <code>Promise.race</code> 的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise/then">MDN－.then()</a>：了解 <code>.then()</code> 的意義。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2024-06-16</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/javascript/20240511/1983175806/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #99 Async 與 Await
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20240509/2084810320/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #97 立即函式
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

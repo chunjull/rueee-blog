@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#105 內建物件 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="JS 的內建物件是透過物件「原型」提供的方法繼承而來。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#105 內建物件">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240517/1429919898/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="JS 的內建物件是透過物件「原型」提供的方法繼承而來。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-05-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-16T08:57:54.137Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #105 內建物件
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/05/" class="post-meta__date button">2024-05-17</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">3 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>JS 的內建物件是透過物件「原型」提供的方法繼承而來。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>依照功能不同，JS 的內建物件可分成三種類型：</p>
+<ul>
+<li>封裝類物件：包含 <code>Array()</code> 、 <code>Object()</code> 、 <code>Function()</code> 、 <code>String()</code> 、 <code>Number</code> 、 <code>Boolean()</code> 等，用來代表 JS 各種資料型態的原型物件。</li>
+<li>工具類物件： <code>Math</code> 、 <code>Date</code> 、 <code>RegExp</code> 等具有特殊用途的物件。</li>
+<li>錯誤／例外處理類物件： <code>Error</code> 、 <code>ReferenceError</code> 、 <code>SyntaxError</code> 、 <code>TypeError</code> 等，代表程式執行過程中發生錯誤（error）或出現例外情況（exception）的錯誤物件。</li>
+</ul>
+<h3 id="資料封裝類物件"><a href="#資料封裝類物件" class="headerlink" title="資料封裝類物件"></a>資料封裝類物件</h3><p>在 JS 中，所有物件（包括陣列、函式）都繼承自 <code>Object</code> ，可以透過物件原型提供的 <code>constructor</code> 屬性查找到各資料型態真正的原型建構子。<br>因為這樣的特性，使開發者可以透過 <code>new</code> 運算子加上原型建構子來產生該型別的物件。此外，若沒有使用 <code>new</code> 運算子，則可以透過基本型別包裹器來轉換資料型別。</p>
+<h3 id="工具類物件"><a href="#工具類物件" class="headerlink" title="工具類物件"></a>工具類物件</h3><p>工具類物件以 <code>Math</code> 、 <code>Date</code> 、 <code>RegExp</code> 為代表。</p>
+<ol>
+<li><p>Math()</p>
+<p> 所有 <code>Math</code> 的屬性和方法都是靜態「唯讀」，並非建構式，因此無法由 <code>new</code> 運算子來產生新物件，且會使用大寫表示 <code>Math</code> 物件的屬性，例如： <code>Math.PI</code> 、 <code>Math.SQRT2</code> 。    </p>
+</li>
+<li><p>Date()</p>
+<p>  <code>Date()</code> 是建立 <code>Date</code> 物件的建構子函式，用來表示日期與時間，且只能透過 <code>new</code> 運算子來產生。若省去 <code>new</code> 運算子，直接把 <code>Date</code> 作為一般函式呼叫，將會得到一個代表當下時間的字串，而非 <code>Date</code> 物件。    </p>
+</li>
+<li><p>RegExp()</p>
+<p>  <code>RegExp()</code> 物件，是用來表示正規表達式（Regular Expression, RegExp, RE）的一種物件，可以透過正規表達式字面值（regular expression literal）或 <code>new</code> 運算子來建立。</p>
+</li>
+</ol>
+<h3 id="錯誤／例外處理類物件"><a href="#錯誤／例外處理類物件" class="headerlink" title="錯誤／例外處理類物件"></a>錯誤／例外處理類物件</h3><p>常被用來代表「過程中發生錯誤（error）」或「出現例外狀況（exception）」的錯誤物件有 <code>Error</code> 、 <code>ReferenceError</code> 、 <code>SyntaxError</code> 與 <code>TypeError</code> 等。例如：當我們嘗試在 console 主控台呼叫一個不存在的函式時，主控台會顯示 <code>ReferenceError</code> 的錯誤。<br>在 JS 中，可以透過 <code>try…catch</code> 語法來捕獲錯誤，例如，當我們想要呼叫不存在的 <code>hello()</code> 函式時：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="title function_">hello</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(e) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">name</span> + <span class="string">&#x27;: &#x27;</span> + e.<span class="property">message</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上述程式碼為例，實際執行時因為 <code>hello()</code> 函式並不存在，程式會跑進 <code>catch</code> 區塊中，並傳遞該錯誤或例外的物件 <code>e</code> ，以取得其的 <code>name</code> 與 <code>message</code> 等屬性，讓開發者可以明確知道錯誤的類別與相關訊息。此外，還可在捕獲錯誤的最後加上 <code>finally</code> 語法，其代表不論 <code>try</code> 區塊有無發生錯誤，都會執行 <code>finally</code> 區塊的程式碼。</p>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li><code>Math</code> 物件提供的數學方法之精度會取決於實作方法。換句話說，不同瀏覽器可能會得到不同結果，甚至同樣的 JS 引擎在不同作業系統或架構上，所得到的結果都可能有差異。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects">MDN－標準內建物件</a>：了解 JS 的標準內建物件。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Math">MDN－Math</a>：了解 <code>Math</code> 物件的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Date">MDN－Date</a>：了解 <code>Date</code> 物件的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp">MDN－RegExp</a>：了解 <code>RegExp()</code> 物件的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/try...catch">MDN－try…catch 語法</a>：了解 <code>try…catch</code> 的意義。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2024-06-16</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/javascript/20240518/158954928/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #106 原型鍊與繼承
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20240516/2915105083/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #104 包裹器
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
