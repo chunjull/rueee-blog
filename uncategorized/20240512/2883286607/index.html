@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#100 函式參數 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="函式參數可傳入 arguments 物件、其餘參數等值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#100 函式參數">
+<meta property="og:url" content="https://chunjull.github.io/uncategorized/20240512/2883286607/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="函式參數可傳入 arguments 物件、其餘參數等值。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-05-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-16T08:33:12.414Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #100 函式參數
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/05/" class="post-meta__date button">2024-05-12</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">3 min read</span>
+        
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>函式參數可傳入 arguments 物件、其餘參數等值。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>呼叫函式時，最常見的函式結構是透過「函式名稱」加上「小括號」的方式，小括號內的資料，就是「參數」。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> plus = <span class="keyword">function</span>(<span class="params">numA, numB</span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> numA + numB;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">plus</span>(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>以上述程式碼為例：呼叫 <code>plus(1, 2);</code> 時，其中的 <code>1, 2</code> 會作為「參數」傳至 <code>plus</code> 函式中， <code>numA</code> 與 <code>numB</code> 的值就會分別是 <code>1</code> 與 <code>2</code> 。回傳內容 <code>return numA + numB;</code> 就會是 <code>1 + 2</code> 的結果。</p>
+<h3 id="arguments-物件"><a href="#arguments-物件" class="headerlink" title="arguments 物件"></a>arguments 物件</h3><p>當函式被呼叫時，會產生一個 <code>arguments</code> 物件，其內容為：呼叫函式所帶入的「參數」。<br>雖然 <code>arguments</code> 看起來像「陣列」，但實際上它只是一個看起來帶有「索引」特性且內建 <code>length</code> 屬性的物件，其他地方與「陣列」完全不同。<br>即使在定義函式時，完全沒有指定參數，仍然可以在函式內透過 <code>arguments</code> 物件才取得參數。換言之，利用 <code>arguments</code> 物件可以讓函式變得更有彈性。例如：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> plus = <span class="keyword">function</span>(<span class="params">numA, numB</span>)&#123;</span><br><span class="line">	<span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="variable language_">arguments</span>.<span class="property">length</span>; i++)&#123;</span><br><span class="line">		num += <span class="variable language_">arguments</span>[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">plus</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>原本只能讓 <code>plus</code> 函式做「兩個數值相加」，但現在，藉由 <code>arguments</code> 物件可以讓 <code>plus(1, 2, 3, 4)</code> 的所有參數一起相加。</p>
+<h3 id="其餘參數"><a href="#其餘參數" class="headerlink" title="其餘參數"></a>其餘參數</h3><p>ES6 新增了一種特性「其餘參數」（rest parameter），可以藉此來取得不確定數量的參數。<br>因為 ES6 的箭頭函式無法使用 <code>arguments</code> 物件，能透過箭頭函式搭配其餘參數的方法，完成和 <code>arguments</code> 物件相同的功能。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">plus</span> = (<span class="params">...<span class="variable language_">arguments</span></span>) =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="variable language_">arguments</span>.<span class="property">length</span>; i++)&#123;</span><br><span class="line">		num += <span class="variable language_">arguments</span>[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">plus</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>當函式的最後一個參數以 <code>...</code> 作為開頭命名時，它會被視為一個陣列，並且將所有的參數存入這個陣列中。<br>而因為 <code>...arguments</code> 實際上是一個「陣列」，所以它能夠使用 <code>arguments</code> 物件所沒有的 <code>reduce</code> 方法，讓該 <code>plus</code> 函式變得更加簡短，例如可以將上述程式碼簡化成底下這樣：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">plus</span> = (<span class="params">...<span class="variable language_">arguments</span></span>) =&gt; <span class="variable language_">arguments</span>.<span class="title function_">reduce</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b);</span><br><span class="line"><span class="title function_">plus</span>(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="以「物件」作為參數"><a href="#以「物件」作為參數" class="headerlink" title="以「物件」作為參數"></a>以「物件」作為參數</h3><p>除了上述參數外，還有一種常見方式：將多個參數用一個「物件」包裝起來。<br>由於物件屬性不要求「順序」，即便中間忽略幾個非必填的屬性也不影響程式運作。同時，往後就算要新增參數也不擔心會影響到過去的程式。<br>這種作法讓呼叫函式更簡便，且使程式碼更容易閱讀，也易於維護。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> people = &#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&quot;Kumamon&quot;</span>,</span><br><span class="line">	<span class="attr">birthDay</span>: <span class="string">&quot;03/12&quot;</span>,</span><br><span class="line">	<span class="attr">gender</span>: <span class="string">&quot;male&quot;</span>,</span><br><span class="line">	<span class="attr">address</span>: <span class="string">&quot;Kumamoto-ken&quot;</span>,</span><br><span class="line">	<span class="attr">phone</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">	<span class="attr">email</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">addPerson</span>(people);</span><br></pre></td></tr></table></figure>
+<p>以上述程式碼為例：假設要完成「將某人加入通訊錄」的功能，以函式 <code>addPerson()</code> 實作。首先將某人的資料屬性填入物件 <code>people</code> 中，非必填屬性可以留白不填，最後再把 <code>people</code> 物件作為參數傳入 <code>addPerson()</code> 。</p>
+<h3 id="參數的預設檢查"><a href="#參數的預設檢查" class="headerlink" title="參數的預設檢查"></a>參數的預設檢查</h3><p>在 JS 中，即使函式的參數數量已經定義過，實際在呼叫時，仍可以不傳入參數或者傳入不對等的數量。如果傳多了也無所謂；若傳少了，那些接收不到值的參數們就會變成 <code>undefined</code> 。<br>有幾種方法可以幫助我們檢查參數：</p>
+<ol>
+<li><p><code>||</code> 運算子</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> plus = <span class="keyword">function</span>(<span class="params">numA, numB</span>)&#123;</span><br><span class="line">    	numA = numA || <span class="number">0</span>;</span><br><span class="line">    	numB = numB || <span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">return</span> numA + numB;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="string">``</span><span class="string">`    </span></span><br><span class="line"><span class="string">2.  `</span>!==<span class="string">` 搭配三元運算子</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    `</span><span class="string">``</span>jsx</span><br><span class="line">    <span class="keyword">const</span> plus = <span class="keyword">function</span>(<span class="params">numA, numB</span>)&#123;</span><br><span class="line">    	numA = (<span class="keyword">typeof</span> numA !== <span class="string">&quot;undefined&quot;</span>) ? numA : <span class="number">0</span>;</span><br><span class="line">    	numB = ;</span><br><span class="line">    	<span class="keyword">return</span> numA + numB;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="string">``</span><span class="string">`    </span></span><br><span class="line"><span class="string">3. ES6 預設參數</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    `</span><span class="string">``</span>jsx</span><br><span class="line">    <span class="keyword">const</span> plus = <span class="keyword">function</span>(<span class="params">numA = <span class="number">0</span>, numB = <span class="number">0</span></span>)&#123;</span><br><span class="line">    	<span class="keyword">return</span> numA + numB;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments">MDN－arguments</a>：了解 <code>arguments</code> 物件的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/rest_parameters">MDN－rest parameter</a>：了解其餘參數（rest parameter）的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Default_parameters">MDN－預設參數</a>：了解 ES6 預設參數的意義。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2024-06-16</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/uncategorized/20240513/1390225425/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #101 Scope Chain
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/uncategorized/20240511/1983175806/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #99 Async 與 Await
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

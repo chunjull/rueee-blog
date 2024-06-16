@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#106 原型鍊與繼承 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="原型繼承的目的是「讓一個物件取得另一個物件的屬性與方法」。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#106 原型鍊與繼承">
+<meta property="og:url" content="https://chunjull.github.io/uncategorized/20240518/158954928/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="原型繼承的目的是「讓一個物件取得另一個物件的屬性與方法」。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-05-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-16T08:43:35.288Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #106 原型鍊與繼承
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/05/" class="post-meta__date button">2024-05-18</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">5 min read</span>
+        
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>原型繼承的目的是「讓一個物件取得另一個物件的屬性與方法」。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>JS 是一種基於「原型」的物件導向程式語言，其繼承方法是透過「原型」（prototype）進行實作。藉由「原型」繼承，可以讓本來沒有某個屬性的物件去存取其他物件的屬性，而該「被繼承的物件」就被稱為「原型」。<br>需要特別注意的是：在原型繼承的規則裡，同一個物件無法指定兩種原型物件。但這點在「原型鏈」（Prototype Chain）中可以得到解決。</p>
+<h3 id="原型物件"><a href="#原型物件" class="headerlink" title="原型物件"></a>原型物件</h3><p>嘗試對某個物件存取一個不存在該物件的屬性時，瀏覽器會繼續往「原型物件」（ <code>[[prototype]]</code> ）尋找，順著原型鏈找到最頂層的 <code>object.prototype</code> 才會停止，該物件即是 JS 所有物件的起源。<br>因此， <code>object.prototype</code> 提供的所有方法，JS 中的任何物件都可以呼叫它，例如： <code>obejct.prototype.hasOwnProperty()</code> 、 <code>object.prototype.toString()</code> 、 <code>object.prototype.valueOf()</code> 等方法。即便建立物件時，沒有定義上述方法，但基於原型鏈繼承的原則，仍然可以呼叫這些方法。</p>
+<h3 id="建構子與原型"><a href="#建構子與原型" class="headerlink" title="建構子與原型"></a>建構子與原型</h3><p>在每一個函式被建立時，都會有原型物件，當開發者把該函式當作建構子來建立新物件時，該函式的原型物件會被當作這個新物件的原型。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Pokemon</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;&#125;;</span><br><span class="line"><span class="title class_">Pokemon</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">saySomething</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;Pika-pika!&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="title class_">Pokemon</span>();</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="title class_">Pokemon</span>();</span><br><span class="line">p1.<span class="title function_">saySomething</span>();  <span class="comment">// undefined</span></span><br><span class="line">p2.<span class="title function_">saySomething</span>(); <span class="comment">// &quot;Pika-pika!&quot;</span></span><br></pre></td></tr></table></figure>
+<p>以上述程式碼為例，變數 <code>p1</code> 是直接呼叫 <code>Pokemon</code> 的結果，但因為該函式沒有回傳，結果會是 <code>undefined</code> 。變數 <code>p2</code> 則是透過 <code>new</code> 運算子來建立物件，但由於函式也是物件，所以可以透過原型 <code>prototype</code> 進而擴充每一個透過該函式所建構的物件。因此，透過 <code>new Pokemon()</code> 建立新物件並指定給變數 <code>p2</code> 後，即使尚未對該變數定義 <code>saySomething()</code> 方法，仍可以使 <code>p2</code> 透過原型取得呼叫 <code>saySomething()</code> 的能力，並回傳 <code>“Pika”</code> 的結果。<br>然而，如果在建構子中建立「同名」的實例方法，則會優先存取自己的屬性或方法，如果沒有才會再順著原型鏈向上尋找，這點需要特別注意。</p>
+<h3 id="原型與繼承"><a href="#原型與繼承" class="headerlink" title="原型與繼承"></a>原型與繼承</h3><p>當函式被建立時，都會擁有原型物件 <code>prototype</code> 。藉由擴充該 <code>prototype</code> 物件，能夠讓每一個透過此函式建構的物件都有該「屬性」或「方法」。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Pokemon</span> = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Pokemon</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">saySomething</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span> + <span class="string">&quot; says: pika!&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="title class_">Pokemon</span>(<span class="string">&quot;Pikachu&quot;</span>);</span><br><span class="line">p.<span class="title function_">saySomething</span>(); <span class="comment">// Pikachu says: pika!</span></span><br></pre></td></tr></table></figure>
+<p>以上述程式碼為例，使用 <code>new</code> 運算子建構一個 <code>Pokemon</code> 的實體——即物件 <code>p</code> 時，該物件 <code>p</code> 的原型物件會自動指向建構子的 <code>prototype</code> 屬性，也就是 <code>Pokemon.prototype</code> 。<br>此外，也可以透過原型新增「方法」（method），此方式在原型新增後即可馬上使用：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Pokemon</span> = <span class="keyword">function</span> (<span class="params">name</span>) &#123;</span><br><span class="line">	<span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="title class_">Pokemon</span>(<span class="string">&quot;Eevee&quot;</span>);</span><br><span class="line">p.<span class="title function_">attack</span>(); <span class="comment">// Uncaught TypeError: p.attack is not a function</span></span><br><span class="line"><span class="title class_">Pokemon</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">attack</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;Bite!&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">p.<span class="title function_">attack</span>(); <span class="comment">// &quot;Bite!&quot;</span></span><br></pre></td></tr></table></figure>
+<p>在上述程式碼中，原本物件 <code>p</code> 與其原型鏈上的所有物件都沒有 <code>attack()</code> 方法，在透過 <code>Pokemon.prototype.attack</code> 新增對應方法後，無需再重新設置物件 <code>p</code> ，而是立刻就可以使用 <code>p.attack()</code> 來呼叫。</p>
+<h3 id="原型繼承方式"><a href="#原型繼承方式" class="headerlink" title="原型繼承方式"></a>原型繼承方式</h3><p>可以將「原型繼承的屬性或方法」統整成以下情況：</p>
+<ul>
+<li>如果物件實體與它的原型同時用有同樣的屬性或方法時，會<strong>優先存取自己的屬性或方法</strong>。</li>
+<li>如果物件實體找不到某個屬性或方法時，會往它的原型物件尋找。<ol>
+<li>若在原型物件或更上層的原型物件有發現這個屬性，且屬性描述的 <code>writable</code> 為 <code>true</code> ，則會為該物件實體新增對應的屬性或方法。</li>
+<li>同上，但若該屬性描述的 <code>writable</code> 為 <code>false</code> ，則等於目標物件會多出一個「唯讀」屬性，且事後無法再新增或修改。</li>
+<li>若在原型物件或更上層的原型物件有發現某屬性，但該屬性是一個「設值器」（setter function），則呼叫對象會是該設值器，目標物件的屬性也無法被重新定義。</li>
+</ol>
+</li>
+</ul>
+<h3 id="檢查屬性"><a href="#檢查屬性" class="headerlink" title="檢查屬性"></a>檢查屬性</h3><p>原型有兩種檢查方式，一種是透過「原型鏈」檢查屬性；另一種則是檢查某屬性是否為「物件本身」所有。</p>
+<ul>
+<li>第一種透過「原型鏈」檢查屬性的方式，可以使用 <code>in</code> 運算子：</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Pokemon</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;&#125;;</span><br><span class="line"><span class="title class_">Pokemon</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">saySomething</span> = <span class="keyword">function</span> (<span class="params"></span>)&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;Pika!&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="title class_">Pokemon</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;saySomething&#x27;</span> <span class="keyword">in</span> p2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>第二種檢查則可以透過 <code>hasOwnProperty()</code> 方法進行：</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Eevee</span> = &#123; <span class="attr">bite</span>: <span class="literal">true</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Flareon</span> = &#123; <span class="attr">flamethrower</span>: <span class="literal">true</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Vaporeon</span> = &#123; <span class="attr">waterGun</span>: <span class="literal">true</span> &#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Eevee</span>.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;bite&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Eevee</span>.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;flamethrower&#x27;</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h3 id="特殊屬性：proto"><a href="#特殊屬性：proto" class="headerlink" title="特殊屬性：proto"></a>特殊屬性：<strong>proto</strong></h3><p>大多數瀏覽器的 JS 引擎都有提供一種名為 <code>__proto__</code> 的特殊屬性，其目的為讓開發者能夠取得某物件的原型物件。但並非所有 JS 執行環境都支援該屬性。<br>好消息是：從 ES5 開始，可以透過標準方法 <code>Object.getPrototypeOf()</code> 來取得某物件的原型物件。因此，不論是透過特殊屬性或標準方法的方式，都可以取得目標物件的原型物件 <code>[[prototype]]</code> 。<br>此外，如果要透過「物件」來達到原型繼承的話，則可以使用下列方式：</p>
+<ol>
+<li><code>Obejct.setPrototypeOf()</code> ：將特定物件指定為目標物件的「原型」。</li>
+<li><code>Object.create()</code> ：先建立一個作為「原型」的物件，在透過此方法產生新物件。</li>
+</ol>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10194154">Kuro－ ****物件與原型鏈</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://javascript.alphacamp.co/prototype-prototype-chain.html">ALPHACamp－原型繼承與原型鏈</a>：了解原型繼承與原型鏈的意義。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2024-06-16</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/uncategorized/20240519/1882835702/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            #106 this
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/uncategorized/20240517/1429919898/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #105 內建物件
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
