@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/favicon_io/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>#97 立即函式 | JubyDoWhat</title>
+
+
+    <meta name="keywords" content="JavaScript">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="立即函式（IIFE）的目的：減少全域變數產生，並避免變數名稱衝突。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#97 立即函式">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240509/2084810320/index.html">
+<meta property="og:site_name" content="JubyDoWhat">
+<meta property="og:description" content="立即函式（IIFE）的目的：減少全域變數產生，並避免變數名稱衝突。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2024-05-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-16T08:19:20.738Z">
+<meta property="article:author" content="Juby">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">JubyDoWhat</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首頁</a>
+                
+                    <a href="/tags/" class="navbar-menu button">標籤</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分類</a>
+                
+                    <a href="/archives/" class="navbar-menu button">歸檔</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首頁</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">標籤</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分類</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">歸檔</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        #97 立即函式
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2024/05/" class="post-meta__date button">2024-05-09</a>
+        
+    
+    
+
+
+ 
+
+ 
+        ・ <span class="post-count">4 min read</span>
+        
+    <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>立即函式（IIFE）的目的：減少全域變數產生，並避免變數名稱衝突。</p>
+<span id="more"></span>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>「立即函式」指「可以立即被呼叫的函式表達式」（Immediately Invoked Function Expression, IIFE）。<br>立即函式最主要的目的是：避免污染到全域環境，並造成污染與衝突。因此，立即函式會限制變數的作用域，將該變數的有效範圍限制在「立即函式的內層」，只能在立即函式內被取得，無法在外層呼叫。</p>
+<h3 id="立即函式結構"><a href="#立即函式結構" class="headerlink" title="立即函式結構"></a>立即函式結構</h3><p>首先，來回顧一下原始的函式結構：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">doSomething</span> (i)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果我們希望在定義函式的當下就呼叫它，使其變成立即函式，需要注意兩個步驟：</p>
+<ol>
+<li>先使用小括號 <code>()</code> 將這個函式包起來。</li>
+<li>並在最後方再加一個小括號 <code>()</code> ，使我們可以呼叫它。</li>
+<li>如果該函式只需要在宣告的當下執行，之後不會再呼叫，則可以省去函式命名。<br>如此，由上述步驟得到的立即函式會是下面這個樣子：<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> (<span class="params">i</span>)&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="立即函式特性"><a href="#立即函式特性" class="headerlink" title="立即函式特性"></a>立即函式特性</h3><p>立即函式具有以下幾種特性：</p>
+<ol>
+<li>是「具名函式」，也是可以自我執行的「匿名函式」。<br>  立即函式會透過具名函式——即「函式表達式」——來執行，無法在「立即函式的範圍外層」被呼叫。同時，立即函式也可以是不具名的匿名函式，並能夠自我執行。</li>
+<li>變數有效範圍只在「立即函式的內層」。<br>  立即函式的變數有效範圍只在「立即函式的內層」，換言之，只能在立即函式內被取得，在外層無法取得變數。</li>
+<li>減少全域變數的產生。<br>  因為上述限制作用域的關係，立即函式可以減少全域變數產生，同時可以避免「變數名稱衝突」的問題。</li>
+<li>能夠傳遞參數且回傳值。<br>  立即函式本身是函式表達式，可以傳參數、回傳值，並以變數接收回傳值。</li>
+</ol>
+<h3 id="立即函式傳遞變數"><a href="#立即函式傳遞變數" class="headerlink" title="立即函式傳遞變數"></a>立即函式傳遞變數</h3><p>假設我們想透過迴圈與 <code>setTimeout</code> 來做到「在五秒鐘內，每秒依序透過 <code>console.log</code> 印出 <code>1 2 3 4 5</code> 」的範例。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">	<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">	&#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>以上述程式碼為例，如果直接使用迴圈搭配 <code>setTimeout</code> 的寫法，設定每秒印出 <code>i</code> 值，實際執行結果會是「在『一秒鐘之後』同時印出『五次 <code>5</code> 』」。<br>造成這種結果，是因為「切分變數有效範圍的最小單位是 <code>function</code> 」。每一次執行 <code>setTimeout</code> 時，裡面 <code>console.log(i);</code> 的 <code>i</code> 變數是從函式的「外層」取得， <code>for</code> 迴圈並不會等 <code>setTimeout</code> 結束後才繼續。因此，當 <code>setTimeout</code> 內的回呼函式執行時，拿到的 <code>i</code> 值已經是跑完 <code>for</code> 迴圈的 <code>5</code> 。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">	(<span class="keyword">function</span>(<span class="params">x</span>)&#123;</span><br><span class="line">		<span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(x);</span><br><span class="line">		&#125;, <span class="number">1000</span> * x);</span><br><span class="line">	&#125;)(i);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>為了保留每一次執行迴圈時「當下的」那個 <code>i</code> 值，可以使用「立即函式」的方式將其包覆住，並將 <code>i</code> 值作為參數傳入，同時把印出時間設定為 <code>x</code> 秒，即可順利做出「每秒依序印出 <code>1 2 3 4 5</code> 」的程式碼。</p>
+<h3 id="void-運算子"><a href="#void-運算子" class="headerlink" title="void 運算子"></a><code>void</code> 運算子</h3><p>在 JS 中，有一種運算子名為 <code>void</code> ，其功能為：接收任意的運算式或值，並回傳 <code>undefined</code> 。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="number">0</span>; <span class="comment">// undefined</span></span><br><span class="line"><span class="title function_">void</span>(<span class="number">0</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>一般來說，無論 <code>void</code> 運算子後面的值為何，都會回傳 <code>undefined</code> 的結果。但若後方的值是一個「立即函式」，其回傳結果則會是該立即函式的運算結果。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="keyword">function</span> <span class="title function_">saySomething</span> (msg) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(msg);</span><br><span class="line">&#125;(<span class="string">&quot;Hello&quot;</span>); <span class="comment">// Hello</span></span><br></pre></td></tr></table></figure>
+<p>然而，如果再去呼叫該函式時，則是會出現 <code>Uncaught ReferenceError: saySomething is not defined</code> 的錯誤。</p>
+<h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
+<li>立即函式不符合 ASI 規則，所以無法自動插入分號。但若在立即函式前方或後方補上分號，即可正確執行。</li>
+<li>雖然 <code>void</code> 運算子的使用情境不多，但有些開發者會習慣在此類一次性呼叫的立即函式前方，加上 <code>void</code> 以增加程式碼的可讀性。</li>
+</ul>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10192739">Kuro－Callback Function 與 IIFE</a>：本文最主要的參考範例。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Glossary/IIFE">MDN－IIFE</a>：了解立即函式的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/void">MDN－void 運算子</a>：了解 <code>void</code> 運算子的意義。</li>
+<li><a target="_blank" rel="noopener" href="https://kuro.tw/posts/2019/08/04/JS-%E5%86%B7%E7%9F%A5%E8%AD%98-%E4%BD%A0%E6%89%80%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84-void/">Kuro－JS 冷知識: 你所不知道的 void</a>： <code>void</code> 運算子的補充介紹。</li>
+</ul>
+
+    </div>
+     
+    <!--
+<div class="post-footer__meta"><p>更新於 2024-06-16</p></div>
+--> 
+    <div class="post-entry__tags"><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/javascript/20240508/969311364/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            #96 回呼函式
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到頂部" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">JubyDoWhat</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'G-JJ0SZSZ8JJ', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+ 
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJ0SZSZ8JJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JJ0SZSZ8JJ');
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

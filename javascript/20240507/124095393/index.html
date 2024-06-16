@@ -33,7 +33,7 @@
     <!-- meta -->
 
 
-<title>#89 JS 運作方式 | JubyDoWhat</title>
+<title>#95 淺拷貝與深拷貝 | JubyDoWhat</title>
 
 
     <meta name="keywords" content="JavaScript">
@@ -43,15 +43,15 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="JS 要透過直譯器編譯後，才生成執行環境看得懂的程式碼。">
+    <meta name="description" content="淺拷貝會共用同一個記憶體空間；深拷貝則使用兩個不同的記憶體空間。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#89 JS 運作方式">
-<meta property="og:url" content="https://chunjull.github.io/javascript/20240501/712895601/index.html">
+<meta property="og:title" content="#95 淺拷貝與深拷貝">
+<meta property="og:url" content="https://chunjull.github.io/javascript/20240507/124095393/index.html">
 <meta property="og:site_name" content="JubyDoWhat">
-<meta property="og:description" content="JS 要透過直譯器編譯後，才生成執行環境看得懂的程式碼。">
+<meta property="og:description" content="淺拷貝會共用同一個記憶體空間；深拷貝則使用兩個不同的記憶體空間。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2024-04-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-16T08:11:18.043Z">
+<meta property="article:published_time" content="2024-05-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-16T08:15:25.055Z">
 <meta property="article:author" content="Juby">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -146,10 +146,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        #89 JS 運作方式
+        #95 淺拷貝與深拷貝
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2024/05/" class="post-meta__date button">2024-05-01</a>
+        <a href="/archives/2024/05/" class="post-meta__date button">2024-05-07</a>
         
     
     
@@ -158,7 +158,7 @@
  
 
  
-        ・ <span class="post-count">1 min read</span>
+        ・ <span class="post-count">2 min read</span>
         
     <span class="separate-dot"></span><a href="/categories/javascript/" class="button">DoJS</a>
 
@@ -171,22 +171,26 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>JS 要透過直譯器編譯後，才生成執行環境看得懂的程式碼。</p>
+        <p>淺拷貝會共用同一個記憶體空間；深拷貝則使用兩個不同的記憶體空間。</p>
 <span id="more"></span>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>我們之前提過：JS 是一種直譯式語言。<br>這代表「JS 無法直接被瀏覽器或電腦給閱讀，要經過編譯（Compile）才能運行這段程式碼」。</p>
-<h3 id="JS-如何運作"><a href="#JS-如何運作" class="headerlink" title="JS 如何運作"></a>JS 如何運作</h3><p>直譯式語言會透過「直譯器」生成電腦看得懂的代碼，並將錯誤直接反映在執行環境中，以 JS 為例，錯誤會直接反映在瀏覽器的主控台（console）上。<br>JS 直譯器轉換時，會先將語法基本單元化（Tokenizing），再解析成抽象結構樹（AST），最後生成代碼：</p>
-<ol>
-<li>語法基本單元化（Tokenizing）會將原始碼拆解成一個一個小單元。在此階段，直譯器僅僅只是解析字詞而已，還無法判斷每個小單元的作用。</li>
-<li>抽象結構樹（AST，Abstract Syntax Tree）會把前一階段解析的 token 轉換成其被賦予的意義。</li>
-<li>直到最後生成代碼，程式碼才會運行。</li>
-</ol>
+<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><p>JS 資料型別分為兩大類：基本型別與物件型別。<br>兩者最大的差異在於：</p>
+<ul>
+<li>基本型別使用 Pass by value 的方式傳遞參數，複製變數時會直接複製「值」（value）。會將「值」真實地複製一份，因此不會互相影響到最終結果。</li>
+<li>物件型別則使用。Pass by reference 的方式傳遞參數，複製變數時則會複製「址」（address）。複製出來的「值」與原本的變數之間會互相影響。<br>物件型別這種「複製的址會和原始變數共用同一記憶體空間」的複製方法，被稱為「淺拷貝」（Shallow Copy）；而透過特定方法，使「複製的址和原始變數使用不同記憶體空間」的方法，則被稱為「深拷貝」（Deep Copy）。</li>
+</ul>
+<h3 id="淺拷貝"><a href="#淺拷貝" class="headerlink" title="淺拷貝"></a>淺拷貝</h3><p>淺拷貝只拷貝「物件或陣列中的第一層資料」，第二層以上的資料不會真的拷貝，而是會參考到和原本相同的物件或陣列實體，因此會互相影響。<br>常見的 JS 拷貝工具都是淺拷貝，例如：使用其餘運算子 <code>…</code> 、使用內建方法 <code>Object.assign()</code> 等。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;<span class="attr">x</span>:<span class="number">3</span>, <span class="attr">y</span>:<span class="number">4</span>, <span class="attr">data</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;;</span><br><span class="line"><span class="keyword">let</span> b = &#123;...a&#125;;</span><br><span class="line">b.<span class="property">data</span>[<span class="number">0</span>] = <span class="number">4</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">data</span>[<span class="number">0</span>]); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+<p>在上述程式碼中， <code>data</code> 中的陣列沒有真的被拷貝，a 和 b 物件中的 <code>data</code> 仍參考到同一個陣列實體。b 對 <code>data</code> 的操作影響到 a 的 <code>data</code> ，使最終印出結果是 <code>4</code> 。</p>
+<h3 id="深拷貝"><a href="#深拷貝" class="headerlink" title="深拷貝"></a>深拷貝</h3><p>深拷貝會「完全拷貝物件底下所有層次的資料」，建立兩個完全獨立的物件實體，且互相不影響。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;<span class="attr">x</span>:<span class="number">3</span>, <span class="attr">y</span>:<span class="number">4</span>, <span class="attr">data</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;;</span><br><span class="line"><span class="keyword">let</span> str = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(a);</span><br><span class="line"><span class="keyword">let</span> b = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(str);</span><br><span class="line">b.<span class="property">data</span>[<span class="number">0</span>] = <span class="number">4</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">data</span>[<span class="number">0</span>]); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>在上述程式碼中，先使用 <code>JSON.stringify()</code> 將物件字串化（Serialize），並使用 <code>JSON.parse()</code> 根據字串化的資料重新建立物件結構，完成深拷貝。經過深拷貝後，兩個物件完全獨立、不互相影響，變數 <code>b</code> 對 <code>data</code> 的操作<strong>不會影響</strong>到變數 <code>a</code> 的 <code>data</code> ，因此最終印出結果是 <code>1</code> 。</p>
 <h3 id="小知識"><a href="#小知識" class="headerlink" title="小知識"></a>小知識</h3><ul>
-<li>瀏覽器、Node.js 等環境的代碼生成過程不盡相同。</li>
+<li>物件或陣列中，還包含其他的物件或陣列，才會產生「層次」。</li>
 </ul>
 <h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://esprima.org/demo/parse.html#">Esprima</a>：可以觀察直譯器轉換過程的小工具。</li>
-<li><a target="_blank" rel="noopener" href="https://its-okay.medium.com/%E8%AA%9E%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F-lexical-scope-e121679a105b">CHEN－語法作用域 lexical scope</a>：了解語法作用域的意義。</li>
-<li><a href="https://chunjull.github.io/javascript/20231025/1925797630/">#1 JS 是什麼？</a>：回顧 JS 是一種什麼樣的程式語言。</li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/andy-blog/%E9%97%9C%E6%96%BCjs%E4%B8%AD%E7%9A%84%E6%B7%BA%E6%8B%B7%E8%B2%9D-shallow-copy-%E4%BB%A5%E5%8F%8A%E6%B7%B1%E6%8B%B7%E8%B2%9D-deep-copy-5f5bbe96c122">Andy Chen－關於JS中的淺拷貝(shallow copy)以及深拷貝(deep copy)</a>：了解淺拷貝、深拷貝的差異。</li>
+<li><a target="_blank" rel="noopener" href="https://www.programfarmer.com/articles/2021/javascript-shallow-copy-deep-copy">城市碼農－JS 中的淺拷貝 (Shallow copy) 與深拷貝 (Deep copy) 原理與實作</a>：透過案例了解拷貝方式的差異。</li>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/tnT-XbrOKA0?si=6iGsC3lNtWWwIu5X">彭彭－JavaScript 物件的淺拷貝、深拷貝</a>：了解淺拷貝、深拷貝的差異。</li>
 </ul>
 
     </div>
@@ -201,7 +205,7 @@
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/javascript/20240502/453057554/" class="nav__link">
+                <a href="/javascript/20240508/969311364/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -210,7 +214,7 @@
                             上一篇
                         </div>
                         <div class="nav__title">
-                            #90 JS 執行環境
+                            #96 回呼函式
                         </div>
                     </div>
                 </a>
@@ -218,13 +222,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/javascript/20240120/1550320910/" class="nav__link">
+                <a href="/javascript/20240506/2224158138/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             下一篇
                         </div>
                         <div class="nav__title">
-                            #88 陣列處理方法：map、filter、find、findIndex
+                            #94 JS 型別比較與轉換規則
                         </div>
                     </div>
                     <div>
